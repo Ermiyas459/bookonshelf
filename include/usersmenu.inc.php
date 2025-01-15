@@ -1,15 +1,10 @@
 
-<main>
+
 
     <?php
-
-
     include(__DIR__ . '/../../private/db_connect.php');
-//     $users_id = $_GET['users_id'];
-
 
     try {
-
         $sql = "SELECT * FROM books";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
@@ -17,49 +12,38 @@
     } catch (PDOException $e) {
         echo "error!!" . $e->getMessage();
     }
-
     ?>
 
-
-
-
     <main>
-
-
 
         <?php if (!empty($books)): ?>
             <table>
                 <thead>
                 <tr>
-                    <th>title</th>
+
+                    <th>Title</th>
                     <th>Schrijver</th>
                     <th>Genre</th>
                     <th>ISBN</th>
                     <th>Taal</th>
                     <th>Aantal Pagina's</th>
-                    <th>exemplaren</th>
+                    <th>Beschikbare Exemplaren</th>
                     <th>aanpassen</th>
                     <th>verwijderen</th>
-<!--                   <th> <button class="gereserveerde" onclick="window.location.href='index.php?page=gereserveerde_boeken'">gereserveerde boeken</button> </th>-->
-<!--                   <th> <button class="geleende" onclick="window.location.href='index.php?page=geleende_boeken'">geleende boeken</button> </th>-->
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($books as $book): ?>
+
+                <?php foreach ($books as $result): ?>
                     <tr>
-                        <!--                    <td><img src="../images/--><?php //echo htmlspecialchars($book['image']); ?><!--" alt="--><?php //echo htmlspecialchars($book['title']); ?><!--" width="100">-->
-                        <!--                    </td>-->
 
-
-<!--                        <td>--><?php //echo htmlspecialchars($book['books_id']); ?><!--</td>-->
-<!--                        <td>--><?php //echo htmlspecialchars($book['users_id']); ?><!--</td>-->
-                        <td><?php echo htmlspecialchars($book['title']); ?></td>
-                        <td><?php echo htmlspecialchars($book['author']); ?></td>
-                        <td><?php echo htmlspecialchars($book['genre']); ?></td>
-                        <td><?php echo htmlspecialchars($book['isbn']); ?></td>
-                        <td><?php echo htmlspecialchars($book['language']); ?></td>
-                        <td><?php echo htmlspecialchars($book['page_count']); ?></td>
-                        <td><?php echo htmlspecialchars($book['copies_available']); ?></td>
+                        <td><?= htmlspecialchars($result['title']); ?></td>
+                        <td><?= htmlspecialchars($result['author']); ?></td>
+                        <td><?= htmlspecialchars($result['genre']); ?></td>
+                        <td><?= htmlspecialchars($result['isbn']); ?></td>
+                        <td><?= htmlspecialchars($result['language']); ?></td>
+                        <td><?= htmlspecialchars($result['page_count']); ?></td>
+                        <td><?= htmlspecialchars($result['copies_available']); ?></td>
 
                         <td> <form method="post" action="php/gereserveerde_boeken.php" style="display:inline;">
                             <input type="hidden" name="books_id" value="<?= $book['books_id'] ?>">
