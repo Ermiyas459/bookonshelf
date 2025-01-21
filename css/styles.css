@@ -17,7 +17,6 @@ body.home-page {
     justify-content: center;
     align-items: center;
     height: 200vh;
-
     box-sizing: border-box;
    /*background-image: url("../images/dark blue.jpg");*/
     background-size: cover;
@@ -25,15 +24,21 @@ body.home-page {
 
 
 
-body.managers_menu,
-body.user_menu {
+body.manager_menu,
+body.usersmenu {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Zorgt ervoor dat de items verticaal worden uitgelijnd */
     align-items: center;
-    height: 100vh;
+    justify-content: flex-start; /* Maakt ruimte aan de bovenkant voor de header */
+    margin-top: 100px; /* Verplaatst de inhoud naar beneden, zodat het niet onder de header valt */
+    height: calc(100vh - 100px); /* Zorgt ervoor dat de inhoud het scherm vult, minus de header */
     box-sizing: border-box;
-    background-image:url("../images/library-books.jpeg");
+    width: 100%; /* Zorgt ervoor dat de inhoud de volle breedte van de pagina gebruikt */
 }
+
+
+
+
 
 
 
@@ -46,6 +51,7 @@ main {
     max-width: 1500px;
     margin-left: 0;
     margin-right: 0;
+
 }
 
 
@@ -60,7 +66,7 @@ table {
     position: static;
 }
 
-/* Header styles */
+
 thead {
     background-color: #f8f9fa;
 }
@@ -256,7 +262,7 @@ tbody tr:nth-child(even) {
     height: auto;
 }
 
-/* Common header styles */
+
 header {
     display: flex;
     align-items: center;

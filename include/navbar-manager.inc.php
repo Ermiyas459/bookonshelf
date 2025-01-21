@@ -23,6 +23,7 @@
         <button class="home" onclick="window.location.href='index.php?page=manager_menu'">boeken</button>
         <button class="toevegen" onclick="window.location.href='index.php?page=usersoverview'">gebruikers</button>
         <button class="toevegen" onclick="window.location.href='index.php?page=add'">toevoegen</button>
+        <button name="home" onclick="window.location.href='index.php?page=beheren'">beheren</button>
         <button class="uitloggen" onclick="window.location.href='index.php?page=Logout'">Uitloggen</button>
 
 

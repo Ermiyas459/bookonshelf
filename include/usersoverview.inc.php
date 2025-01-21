@@ -18,15 +18,15 @@ try {
             <thead>
             <tr>
 
-                <th>Title</th>
-                <th>Schrijver</th>
-                <th>Genre</th>
-                <th>ISBN</th>
-                <th>Taal</th>
-                <th>Aantal Pagina's</th>
-                <th>Beschikbare Exemplaren</th>
-                <th>aanpassen</th>
-                <th>verwijderen</th>
+                <th>Name</th>
+                <th>Tussenvoegsel</th>
+                <th>Achternaam</th>
+                <th>stad</th>
+                <th>straat</th>
+                <th>huis nummer</th>
+                <th>post code</th>
+                <th>email</th>
+                <th>geboorte datum</th>
             </tr>
             </thead>
             <tbody>

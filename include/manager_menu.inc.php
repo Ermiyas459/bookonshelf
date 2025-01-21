@@ -2,52 +2,58 @@
 include(__DIR__ . '/../../private/db_connect.php');
 
 try {
-    $sql = "SELECT * FROM books";
-    $stmt = $pdo->prepare($sql);
+    // SQL-query om boeken en gerelateerde gegevens op te halen
+    $query = "SELECT b.books_id, b.title, b.isbn, b.page_count, b.copies_available, 
+                     COALESCE(s.name, 'Onbekend') AS author_name, 
+                     COALESCE(g.genre, 'Onbekend') AS genre_name, 
+                     COALESCE(t.taal, 'Onbekend') AS language_name
+              FROM books b
+              LEFT JOIN schrijvers s ON b.author = s.author_id
+              LEFT JOIN genre g ON b.genre = g.genre_id
+              LEFT JOIN taal t ON b.language = t.taal_id";
+    $stmt = $pdo->prepare($query);
     $stmt->execute();
     $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    echo "error!!" . $e->getMessage();
+    echo "Fout bij ophalen van gegevens: " . $e->getMessage();
 }
 ?>
 
 <main>
-
     <?php if (!empty($books)): ?>
         <table>
             <thead>
             <tr>
-
-                <th>Title</th>
+                <th>Titel</th>
                 <th>Schrijver</th>
                 <th>Genre</th>
                 <th>ISBN</th>
                 <th>Taal</th>
                 <th>Aantal Pagina's</th>
                 <th>Beschikbare Exemplaren</th>
-                <th>aanpassen</th>
-                <th>verwijderen</th>
+                <th>Aanpassen</th>
+                <th>Verwijderen</th>
             </tr>
             </thead>
             <tbody>
-
-            <?php foreach ($books as $result): ?>
+            <?php foreach ($books as $book): ?>
                 <tr>
-
-                    <td><?= htmlspecialchars($result['title']); ?></td>
-                    <td><?= htmlspecialchars($result['author']); ?></td>
-                    <td><?= htmlspecialchars($result['genre']); ?></td>
-                    <td><?= htmlspecialchars($result['isbn']); ?></td>
-                    <td><?= htmlspecialchars($result['language']); ?></td>
-                    <td><?= htmlspecialchars($result['page_count']); ?></td>
-                    <td><?= htmlspecialchars($result['copies_available']); ?></td>
-
-                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=edit&books_id=<?= $result['books_id'] ?>'">aanpassen</button> </td>
-
-                    <td>  <form method="post" action="php/manager_menu.php" style="display:inline;">
-                            <input type="hidden" name="books_id" value="<?php echo $result['books_id']; ?>">
+                    <td><?= htmlspecialchars($book['title']); ?></td>
+                    <td><?= htmlspecialchars($book['author_name']); ?></td>
+                    <td><?= htmlspecialchars($book['genre_name']); ?></td>
+                    <td><?= htmlspecialchars($book['isbn']); ?></td>
+                    <td><?= htmlspecialchars($book['language_name']); ?></td>
+                    <td><?= htmlspecialchars($book['page_count']); ?></td>
+                    <td><?= htmlspecialchars($book['copies_available']); ?></td>
+                    <td>
+                        <button class="aanpassen" onclick="window.location.href='index.php?page=edit&books_id=<?= $book['books_id'] ?>'">Aanpassen</button>
+                    </td>
+                    <td>
+                        <form method="post" action="php/manager_menu.php" style="display:inline;">
+                            <input type="hidden" name="books_id" value="<?= $book['books_id']; ?>">
                             <button class="verwijderen" type="submit" onclick="return confirm('Weet je zeker dat je dit boek wilt verwijderen?')">Verwijderen</button>
-                        </form> </td>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -56,8 +62,3 @@ try {
         <p>Geen boeken gevonden.</p>
     <?php endif; ?>
 </main>
-
-
-
-
-

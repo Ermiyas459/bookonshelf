@@ -15,6 +15,8 @@
         echo "error!!" . $e->getMessage();
     }
 
+
+
     ?>
 
 
@@ -28,7 +30,6 @@
 
 
                     <th> title</th>
-                    <th>exemplaren</th>
                     <th>datum geleend</th>
                     <th>terugbrengen</th>
                 </tr>
@@ -38,7 +39,6 @@
                     <tr>
 
                         <td><?php echo htmlspecialchars($book['title']); ?></td>
-                        <td><?php echo htmlspecialchars($book['copies_available']); ?></td>
                         <td><?php echo htmlspecialchars($book['date-borrowed']); ?></td>
 
 

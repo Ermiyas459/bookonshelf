@@ -15,7 +15,7 @@
     </div>
     <div class="title">BookOnShelf</div>
     <div class="users-buttons">
-        <button class="home" onclick="window.location.href='index.php?page=usersmenu'">home</button>
+        <button class="home" onclick="window.location.href='index.php?page=usersmenu'">boeken</button>
         <button class="gereserveerde" onclick="window.location.href='index.php?page=gereserveerde_boeken'">gereserveerde boeken</button>
         <button class="geleende" onclick="window.location.href='index.php?page=geleende_boeken'">geleende boeken</button>
         <button class="geleende" onclick="window.location.href='index.php?page=profile'">profiel</button>

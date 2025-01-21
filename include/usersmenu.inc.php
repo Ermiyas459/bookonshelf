@@ -8,7 +8,7 @@
         $sql = "SELECT * FROM books";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $book = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo "error!!" . $e->getMessage();
     }
@@ -16,7 +16,7 @@
 
     <main>
 
-        <?php if (!empty($books)): ?>
+        <?php if (!empty($book)): ?>
             <table>
                 <thead>
                 <tr>
@@ -34,16 +34,16 @@
                 </thead>
                 <tbody>
 
-                <?php foreach ($books as $result): ?>
+                <?php foreach ($book as $book): ?>
                     <tr>
 
-                        <td><?= htmlspecialchars($result['title']); ?></td>
-                        <td><?= htmlspecialchars($result['author']); ?></td>
-                        <td><?= htmlspecialchars($result['genre']); ?></td>
-                        <td><?= htmlspecialchars($result['isbn']); ?></td>
-                        <td><?= htmlspecialchars($result['language']); ?></td>
-                        <td><?= htmlspecialchars($result['page_count']); ?></td>
-                        <td><?= htmlspecialchars($result['copies_available']); ?></td>
+                        <td><?= htmlspecialchars($book['title']); ?></td>
+                        <td><?= htmlspecialchars($book['author']); ?></td>
+                        <td><?= htmlspecialchars($book['genre']); ?></td>
+                        <td><?= htmlspecialchars($book['isbn']); ?></td>
+                        <td><?= htmlspecialchars($book['language']); ?></td>
+                        <td><?= htmlspecialchars($book['page_count']); ?></td>
+                        <td><?= htmlspecialchars($book['copies_available']); ?></td>
 
                         <td> <form method="post" action="php/gereserveerde_boeken.php" style="display:inline;">
                             <input type="hidden" name="books_id" value="<?= $book['books_id'] ?>">

@@ -28,7 +28,6 @@
 
 
                     <th> title</th>
-                    <th>exemplaren</th>
                     <th>datum gereserveerd</th>
 <!--                    <th>terugbrengen</th>-->
                 </tr>
@@ -38,8 +37,7 @@
                     <tr>
 
                         <td><?php echo htmlspecialchars($book['title']); ?></td>
-                        <td><?php echo htmlspecialchars($book['copies_available']); ?></td>
-                        <td><?php echo htmlspecialchars($book['date-reserved']); ?></td>
+                        <td><?php echo htmlspecialchars($book['reserved_at']); ?></td>
 
 
 <!--                        <td>  <form method="post" action="php/terug-brengen.php" style="display:inline;">-->

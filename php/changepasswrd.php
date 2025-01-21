@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     if ($password !== $confirm_password) {
         $_SESSION['error'] = "wachtwoorden komen niet overeen!";
@@ -17,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     try {
         $sql = " UPDATE users_table  SET password = :password, confirm_password = :confirm_password  WHERE users_id = :users_id";

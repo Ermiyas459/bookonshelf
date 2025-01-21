@@ -35,7 +35,7 @@ try {
                 <tr>
 
                     <td><?= htmlspecialchars($result['genre']); ?></td>
-                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=genre-aanpassen&author_id=<?= $result['genre_id'] ?>'">aanpassen</button> </td>
+                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=genre-aanpassen&genre_id=<?= $result['genre_id'] ?>'">aanpassen</button> </td>
 
                     <td>  <form method="post" action="php/genre.php" style="...">
                             <input type="hidden" name="genre_id" value="<?php echo $result['genre_id']; ?>">

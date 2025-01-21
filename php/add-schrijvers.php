@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($stmt->execute()) {
-            header("Location: ../index.php?page=schrijvers");
+            header("Location: ../index.php?page=add");
             exit;
         } else {
             echo "Er is iets fout gegaan, probeer opnieuw";
