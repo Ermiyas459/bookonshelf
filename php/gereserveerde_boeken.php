@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $count = $stmt->fetchColumn();
 
     if ($count > 0) {
-        $error = "Je hebt dit boek al geleend";
-        header('Location: ../index.php?page=usersmenu&error=' . urlencode($error));
+        $_SESSION['error']  = "Je hebt dit boek al geleend";
+        header('Location: ../index.php?page=usersmenu');
         exit();
     }
 
@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $count = $stmt->fetchColumn();
 
     if ($count > 0) {
-        $error = "Je hebt dit boek al gereserveerd";
-        header('Location: ../index.php?page=usersmenu&error=' . urlencode($error));
+        $_SESSION['error']  = "Je hebt dit boek al gereserveerd";
+        header('Location: ../index.php?page=usersmenu');
         exit();
     }
 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../index.php?page=gereserveerde_boeken');
         exit();
     } else {
-        echo "Je hebt dit boek al gereserveerd.";
+        $_SESSION['error'] = "er zijn   " . $copies_available . " examplaren over van dit product ";
         header('Location: ../index.php?page=usersmenu');
         exit();
     }

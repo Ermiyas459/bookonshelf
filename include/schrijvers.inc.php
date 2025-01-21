@@ -22,7 +22,7 @@ try {
                 <th>Taal</th>
                 <th>aanpassen</th>
                 <th>verwijderen</th>
-                <th>   <button class="toevoegen" onclick="window.location.href='index.php?page=add-schrijvers'">toevoegen</button>
+                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-schrijvers'">toevoegen</button>
                 </th>
 
 

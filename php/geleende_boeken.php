@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($copies_available == 0) {
         $error = "geen exemplaren over";
         header( 'location: ../index.php?page=usersmenu&error=' . urlencode($error));
-        echo "we hebben deze boek niet op voorraad";
+        $_SESSION['error']  = "helaas zijn er " . $copies_available . " exemplaren over van dit product" ;
         exit();
 
     }
@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $count = $stmt->fetchColumn();
 
     if ($count >= 3) {
-        $error = "Je hebt teveel boeken geleend.";
-        header('Location: ../index.php?page=usersmenu&error=' . urlencode($error));
+        $_SESSION['error']  = "Je hebt teveel boeken geleend.";
+        header('Location: ../index.php?page=usersmenu');
         exit();
     }
 
@@ -78,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../index.php?page=geleende_boeken');
         exit();
     } else {
-        $error ="Je hebt dit boek al geleend.";
-        header('Location: ../index.php?page=usersmenu&error=' . urlencode($error));
+        $_SESSION['error']  ="Je hebt dit boek al geleend.";
+        header('Location: ../index.php?page=usersmenu' );
 
         exit();
     }

@@ -12,7 +12,8 @@
                 <label for="author">Auteur</label>
                 <div class="select-with-link">
                     <select id="author" name="author" required>
-                        <option value="" <?php echo isset($_POST['author']) && $_POST['author'] == '' ? 'selected' : ''; ?>></option>
+                        <option value="" <?php echo isset($_POST['author']) && $_POST['author'] == '' ? 'selected' : ''; ?>>kies een author
+                        </option>
                         <?php
                         include(__DIR__ . '/../../private/db_connect.php');
 
@@ -38,7 +39,7 @@
                 <label for="genre">Genre</label>
                 <div class="select-with-link">
                     <select id="genre" name="genre" required>
-                        <option value="" <?php echo isset($_POST['genre']) && $_POST['genre'] == '' ? 'selected' : ''; ?>></option>
+                        <option value="" <?php echo isset($_POST['genre']) && $_POST['genre'] == '' ? 'selected' : ''; ?>>kies een genre</option>
                         <?php
                         try {
                             $query = "SELECT * FROM `genre`";
@@ -62,7 +63,7 @@
                 <label for="language">Taal</label>
                 <div class="select-with-link">
                     <select id="language" name="language" required>
-                        <option value="" <?php echo isset($_POST['language']) && $_POST['language'] == '' ? 'selected' : ''; ?>></option>
+                        <option value="" <?php echo isset($_POST['language']) && $_POST['language'] == '' ? 'selected' : ''; ?>>kies een taal</option>
                         <?php
                         try {
                             $query = "SELECT * FROM `taal`";
@@ -94,8 +95,14 @@
                 <input type="number" id="copies_available" name="copies_available" required value="<?php echo isset($_POST['copies_available']) ? htmlspecialchars($_POST['copies_available']) : ''; ?>">
 
             </div>
-<!--            <label for="img"><b>Afbeelding</b></label>-->
-<!--            <input type="file" name="img" id="img" accept="image/*"  >-->
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+            ?>
+            <label for="image"><b>Afbeelding</b></label>
+            <input type="file" name="image" id="image" accept="image/*"  >
 
             <button type="submit" class="aanpassen">Toevoegen</button>
         </form>

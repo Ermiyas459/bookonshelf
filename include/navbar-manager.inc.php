@@ -23,7 +23,16 @@
         <button class="home" onclick="window.location.href='index.php?page=manager_menu'">boeken</button>
         <button class="toevegen" onclick="window.location.href='index.php?page=usersoverview'">gebruikers</button>
         <button class="toevegen" onclick="window.location.href='index.php?page=add'">toevoegen</button>
-        <button name="home" onclick="window.location.href='index.php?page=beheren'">beheren</button>
+        <button name="home" onclick="window.location.href='index.php?page=beheren'">andere</button>
+<!--        <div class="user-logo">-->
+<!---->
+<!--            <a href="index.php?page=beheren" class="add-new-link"> <img src="images/dropdown.png"></a>-->
+<!--            -->
+<!---->
+<!---->
+<!---->
+<!--        </div>-->
+
         <button class="uitloggen" onclick="window.location.href='index.php?page=Logout'">Uitloggen</button>
 
 

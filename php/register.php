@@ -1,5 +1,3 @@
-
-
 <?php
 include(__DIR__ . '/../../private/db_connect.php');
 
@@ -19,34 +17,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm_password = $_POST['confirm_password'];
     $dob = $_POST['dob'];
 
+    // Validate if the passwords match
     if ($password !== $confirm_password) {
-        $_SESSION['error'] = "wachtwoorden komen niet overeen!";
+        $_SESSION['error'] = "Wachtwoorden komen niet overeen!";
         header('Location: ../index.php?page=register');
         exit();
     }
 
-try {
-
-    $sql = "SELECT COUNT(*) FROM users_table WHERE email = :email";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $email_exists = $stmt->fetchColumn();
-
-    if ($email_exists) {
-        $_SESSION['error'] = "E-mail is al in gebruik!";
+    // Validate the date of birth to make sure it's not in the future
+    $input_date = new DateTime($dob);
+    $current_date = new DateTime();
+    if ($input_date > $current_date) {
+        $_SESSION['error'] = "De geboortedatum kan niet in de toekomst liggen!";
         header('Location: ../index.php?page=register');
         exit();
     }
-
-
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Prepare SQL statement to insert new user
-    $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, birth_date, role) 
-            VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, 'user')";
 
     try {
+        // Check if the email already exists
+        $sql = "SELECT COUNT(*) FROM users_table WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $email_exists = $stmt->fetchColumn();
+
+        if ($email_exists) {
+            $_SESSION['error'] = "E-mail is al in gebruik!";
+            header('Location: ../index.php?page=register');
+            exit();
+        }
+
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Prepare SQL statement to insert new user
+        $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, date_of_birth, role) 
+                VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, 'user')";
+
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':middle_name', $middle_name);
@@ -60,20 +67,14 @@ try {
         $stmt->bindParam(':confirm_password', $hashed_password);
         $stmt->bindParam(':dob', $dob);
 
-
         if ($stmt->execute()) {
             header("Location: ../index.php?page=login");
             exit();
         } else {
             echo "Er is een fout opgetreden bij het registreren van de gebruiker, probeer opnieuw.";
-            header("Location: ../index.php?page=login");
-            exit();
         }
     } catch (PDOException $e) {
-        echo "error" . $e->getMessage();
+        echo "Error: " . $e->getMessage();
     }
-}catch (Exception $e) {
-    $_SESSION['error'] = $e->getMessage();}
 }
 ?>
-

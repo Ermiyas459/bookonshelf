@@ -33,10 +33,10 @@ try {
     exit;
 }
 ?>
+<div class="add-page">
+    <main class="add">
+        <h2>aanpassen</h2>
 
-<div class="edit-page">
-    <main class="edit">
-        <h2>Aanpassen</h2>
 
         <form method="POST" action="php/edit.php" enctype="multipart/form-data">
             <input type="hidden" name="books_id" value="<?php echo htmlspecialchars($result['books_id']); ?>">
@@ -59,7 +59,7 @@ try {
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <a href="index.php?page=schrijvers" class="add-new-link">Nieuwe auteur toevoegen</a>
+<!--                    <a href="index.php?page=schrijvers" class="add-new-link">Nieuwe auteur toevoegen</a>-->
                 </div>
             </div>
 
@@ -75,7 +75,7 @@ try {
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <a href="index.php?page=genre" class="add-new-link">Nieuw genre toevoegen</a>
+<!--                    <a href="index.php?page=genre" class="add-new-link">Nieuw genre toevoegen</a>-->
                 </div>
             </div>
 
@@ -91,7 +91,7 @@ try {
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <a href="index.php?page=taal" class="add-new-link">Nieuwe taal toevoegen</a>
+<!--                    <a href="index.php?page=taal" class="add-new-link">Nieuwe taal toevoegen</a>-->
                 </div>
             </div>
 

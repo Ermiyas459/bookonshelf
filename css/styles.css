@@ -12,32 +12,32 @@ body {
     background-color: #f8f6f6;
 }
 
+
+
+
+
 body.home-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200vh;
     box-sizing: border-box;
-   /*background-image: url("../images/dark blue.jpg");*/
+   /*background-image: url("../images/pix.jpeg");*/
     background-size: cover;
 }
 
 
 
-body.manager_menu,
-body.usersmenu {
+body.managers_menu,
+body.user_menu {
     display: flex;
-    flex-direction: column; /* Zorgt ervoor dat de items verticaal worden uitgelijnd */
     align-items: center;
-    justify-content: flex-start; /* Maakt ruimte aan de bovenkant voor de header */
-    margin-top: 100px; /* Verplaatst de inhoud naar beneden, zodat het niet onder de header valt */
-    height: calc(100vh - 100px); /* Zorgt ervoor dat de inhoud het scherm vult, minus de header */
+    position: absolute;
+    margin-top: 100px;
+    height: 100vh;
     box-sizing: border-box;
-    width: 100%; /* Zorgt ervoor dat de inhoud de volle breedte van de pagina gebruikt */
+
 }
-
-
-
 
 
 
@@ -46,13 +46,16 @@ body.usersmenu {
 
 main {
     padding: 30px;
-    margin-bottom: 900px;
+    position: absolute;
+    height: 1100px;
     width: 100%;
     max-width: 1500px;
     margin-left: 0;
     margin-right: 0;
 
 }
+
+
 
 
 
@@ -113,6 +116,31 @@ tr:last-child td {
     transition: all 0.2s ease;
     white-space: nowrap;
 }
+
+
+
+button1 {
+    display: block;
+
+    width: 100%;                  /* Optional: makes buttons take up full width */
+    margin-bottom: 50px;          /* Space between buttons */
+    background-color: #0047ab;      /* Blue background */
+    color: white;                /* White text */
+    padding: 30px;    
+    font-size: 40px;              /* Font size */
+    cursor: pointer;             /* Makes the cursor a pointer on hover */
+    transition: background-color 0.3s;  /* Smooth transition for hover effect */
+    box-sizing: border-box;
+
+}
+
+button1:hover {
+    background-color: #003d91;  /* Darker blue when hovered */
+    transform: translateY(-1px);
+
+}
+
+
 
 .aanpassen {
     background-color: #0047ab;
@@ -234,15 +262,6 @@ main > p {
 tbody tr:nth-child(even) {
     background-color: #f8f9fa;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -441,14 +460,13 @@ header {
     min-height: 200vh;  /* Reduced from 100vh */
     min-width: 200vh;  /* Reduced from 100vh */
     padding: 64px;
-    background-image: url("../images/background.jpg");
     position: absolute;
     right: 1px;
 
 }
 
 .login_box {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgb(255, 255, 255);
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -554,8 +572,12 @@ header {
         width: 80px;
     }
 }
+
+
 /* Remove the block container */
 .register-page {
+    position: absolute;
+    bottom: 500px;
     width: 100%;
     max-width: 800px;
     margin: 60px auto;
@@ -565,11 +587,14 @@ header {
 }
 
 /* Style the registration form */
-.register {
+.register,
+.add-page .form-group input[type="date"]
+
+{
     background: none;
     padding: 20px;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: 1000px;
     box-shadow: none;
 }
 
@@ -652,6 +677,8 @@ header {
     .register {
         padding: 16px;
     }
+
+
 
     .form-group {
         margin-bottom: 20px;
@@ -802,7 +829,8 @@ header {
 }
 
 .button_reserveren,
-.button_lenen {
+.button_lenen
+{
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -849,7 +877,7 @@ header {
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 30%;
     max-width: 900px;
     text-align: center;
 }
@@ -874,6 +902,7 @@ header {
 }
 
 .add-page .form-group input[type="text"],
+.add-page .form-group input[type="number"],
 .add-page .form-group select {
     width: 100%;
     padding: 12px;

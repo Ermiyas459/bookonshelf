@@ -59,6 +59,12 @@
                             </form>
 
                         </td>
+                        <?php
+                        if (isset($_SESSION['error'])) {
+                            echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                            unset($_SESSION['error']);
+                        }
+                        ?>
                         <td>  <form method="post" action="php/geleende_boeken.php" style="display:inline;">
                                 <input type="hidden" name="books_id" value="<?= $book['books_id'] ?>">
                                 <input type="hidden" name="users_id" value="...">

@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     } else {
-        $error = 'This user does not exist.';
-        header('Location: ../index.php?page=login&error=' . urlencode($error));
+        $_SESSION['error'] =  'This user does not exist.';
+        header('Location: ../index.php?page=login&error=');
         exit();
 
     }

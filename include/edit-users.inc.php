@@ -10,20 +10,12 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="edit-page">
+<div class="add-page">
     <main class="edit">
         <h2>aanpassen</h2>
-        <?php if (isset($error)): ?>
-            <p style="color:#c31e1e;"><?php echo $error; ?></p>
-        <?php endif; ?>
         <form method="POST" action="php/edit-users.php" enctype="multipart/form-data">
             <input type="hidden" name="users_id" value="<?php echo $result['users_id'] ?>">
 
-            <style>
-                .error {
-                    color: red;
-                }
-            </style>
             <div class="form-group">
                 <label for="name">Voornaam</label>
                 <input type="text" id="name" name="name" value="<?php echo $result['name'] ?>"required>
@@ -67,15 +59,16 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <div class="form-group">
                 <label for="dob">Geboortedatum</label>
-                <input type="date" id="dob" name="dob" value="<?php echo $result['birth_date'] ?>"required>
+                <input type="datetime-local" id="dob" name="dob" value="<?php echo $result['date_of_birth'] ?>" required>
             </div>
+
+            <button type="submit" class="register-button">aanpassen</button>
             <?php
             if (isset($_SESSION['error'])) {
                 echo '<p class="error">' . $_SESSION['error'] . '</p>';
                 unset($_SESSION['error']);
             }
             ?>
-            <button type="submit" class="register-button">aanpassen</button>
         </form>
     </main>
 </div>

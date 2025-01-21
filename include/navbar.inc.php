@@ -10,7 +10,8 @@
 </head>
 <header>
     <div class="logo">
-        <img src="images/logo3.jpg" alt="Logo">
+        <img src="images/logo3.jpg" alt="Logo" onclick="window.location.href='index.php?page=home'">
+
     </div>
     <div class="title">BookOnShelf</div>
     <div class="auth-buttons">

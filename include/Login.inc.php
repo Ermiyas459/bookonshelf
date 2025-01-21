@@ -11,6 +11,12 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+            ?>
             <input class="btn" type="submit" value="Login">
         </form>
     </div>

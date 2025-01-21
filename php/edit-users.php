@@ -13,27 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $postal_code = $_POST['postal_code'];
     $email = $_POST['email'];
     $role = $_POST['role'];
-    $birth_date = $_POST['birth_date'];
+    $dob = $_POST['dob'];
     $users_id = $_POST['users_id'];
-//
-//    try {
-//        $sql = "SELECT COUNT(*) FROM users_table WHERE email = :email AND users_id = :users_id";
-//        $stmt = $pdo->prepare($sql);
-//        $stmt->bindParam(':email', $email);
-//        $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
-//        $stmt->execute();
-//        $email_exists = $stmt->fetchColumn();
-//
-//        if ($email_exists) {
-//            $_SESSION['error'] = "E-mail is al in gebruik!";
-//            header('Location: ../index.php?page=edit-users');
-//            exit();
-//        }
+
+
+    $input_date = new DateTime($dob);
+    $current_date = new DateTime();
+    if ($input_date > $current_date) {
+        $_SESSION['error'] = "De geboortedatum kan niet in de toekomst liggen!";
+        header('Location: ../index.php?page=edit-users');
+        exit();
+    }
 
         $sql = "UPDATE users_table 
                 SET name = :name, middle_name = :middle_name, last_name = :last_name, 
                     city = :city, street = :street, house_number = :house_number, 
-                    postal_code = :postal_code, email = :email, birth_date = :birth_date, 
+                    postal_code = :postal_code, email = :email, date_of_birth = :dob, 
                     role = :role 
                 WHERE users_id = :users_id";
         $stmt = $pdo->prepare($sql);
@@ -45,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':house_number', $house_number);
         $stmt->bindParam(':postal_code', $postal_code);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':birth_date', $birth_date);
+        $stmt->bindParam(':dob', $dob);
         $stmt->bindParam(':role', $role);
         $stmt->bindParam(':users_id', $users_id);
 

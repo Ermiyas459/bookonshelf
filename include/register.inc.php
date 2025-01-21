@@ -59,10 +59,14 @@
                 <label for="confirm_password">Bevestig Wachtwoord</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
-            <div class="form-group">
-                <label for="dob">Geboortedatum</label>
+
+            <div  class="form-group"  >
+                <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" required>
             </div>
+
+
+
             <?php
             if (isset($_SESSION['error'])) {
                 echo '<p class="error">' . $_SESSION['error'] . '</p>';
