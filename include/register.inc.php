@@ -8,7 +8,7 @@
         <?php if (isset($error)): ?>
             <p style="color:#000333;"><?php echo $error; ?></p>
         <?php endif; ?>
-        <form action="php/register.php" method="POST">
+        <form action="php/register.php" method="POST"  enctype="multipart/form-data">
 
             <style>
                 .error {
@@ -65,9 +65,11 @@
                 <input type="date" id="dob" name="dob" required>
             </div>
 
-          <!--  <label for="profile_pic">profile picture:</label>
-            <input type="file" name="profile_pic" id="profile_pic" accept="image/*"><br><br>
--->
+            <div class="form-group">
+                <label for="images_path">Profielafbeelding</label>
+                <input type="file" name="profile_pic" id="images_path" accept="image/*" ><br><br> <!-- Pas de name aan naar profile_pic -->
+            </div>
+
 
             <?php
             if (isset($_SESSION['error'])) {

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         if ($stmt->execute()) {
-            header("Location: ../index.php?page=add");
+            header("Location: ../index.php?page=genre");
             exit;
         } else {
             echo "Er is iets fout gegaan, probeer opnieuw";

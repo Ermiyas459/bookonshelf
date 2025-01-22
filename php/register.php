@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
-//    $profile_pic = $_POST['profile_pic'];
     $dob = $_POST['dob'];
 
     // Validate if the passwords match
@@ -28,36 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate the date of birth to make sure it's not in the future
     $input_date = new DateTime($dob);
     $current_date = new DateTime();
-    $too_old = -100;
     if ($input_date > $current_date) {
         $_SESSION['error'] = "De geboortedatum kan niet in de toekomst liggen!";
         header('Location: ../index.php?page=register');
         exit();
-    }/*elseif ($input_date <= $too_old) {
-        $_SESSION['error'] = " full u echte geboorte datum in!";
-        header('Location: ../index.php?page=register');
-    }*/
-
-
-/*
-
-    // Verwerk afbeelding
-    $upload_dir = __DIR__ . '/../../uploads/';
-    $file_name = basename($_FILES['profile_pic']['name']);
-    $target_file = $upload_dir . $file_name;
-
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
     }
 
-    if (!move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
-        $_SESSION['error'] = 'Fout bij het uploaden van de afbeelding.';
-        header('Location: ../index.php?page=register');
-        exit;
-    }
-
-    $profile_pic = '/uploads/' . $file_name;
-*/
 
     try {
         // Check if the email already exists
@@ -76,9 +51,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // Validate the image (optional)
+        $image_path = NULL; // Default to NULL if no image is uploaded
+
+        if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
+            // Check file type and size
+            $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+            $max_file_size = 2 * 1024 * 1024; // 2MB
+
+            if (!in_array($_FILES['profile_pic']['type'], $allowed_types)) {
+                $_SESSION['error'] = 'Alleen JPEG-, PNG- en GIF-bestanden zijn toegestaan.';
+                header('Location: ../index.php?page=register');
+                exit;
+            }
+
+            if ($_FILES['profile_pic']['size'] > $max_file_size) {
+                $_SESSION['error'] = 'Bestandsgrootte mag niet groter zijn dan 2MB.';
+                header('Location: ../index.php?page=register');
+                exit;
+            }
+
+            // Process the image
+            $upload_dir = __DIR__ . '/../../uploads/';
+            $file_name = basename($_FILES['profile_pic']['name']);
+            $target_file = $upload_dir . $file_name;
+
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+
+            if (!move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
+                $_SESSION['error'] = 'Fout bij het uploaden van de afbeelding.';
+                header('Location: ../index.php?page=register');
+                exit;
+            }
+
+            // Set the image path
+            $image_path = '/uploads/' . $file_name;
+        }
+
         // Prepare SQL statement to insert new user
-        $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, date_of_birth, /*profile_pic,*/ role) 
-                VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, /*:profile_pic,*/ 'user')";
+        $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, date_of_birth, profile_pic, role) 
+                VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, :profile_pic, 'user')";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
@@ -91,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
         $stmt->bindParam(':confirm_password', $hashed_password);
-//        $stmt->bindParam(':profile_pic', $profile_pic);
         $stmt->bindParam(':dob', $dob);
+        $stmt->bindParam(':profile_pic', $image_path, PDO::PARAM_STR);  // Set the image path, or NULL if no image
 
         if ($stmt->execute()) {
             header("Location: ../index.php?page=login");

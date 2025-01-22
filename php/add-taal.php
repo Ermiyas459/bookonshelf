@@ -16,7 +16,7 @@ $taal_id = $_POST['taal_id'];
 
 
         if ($stmt->execute()) {
-            header("Location: ../index.php?page=add");
+            header("Location: ../index.php?page=taal");
             exit;
         } else {
             echo "Er is iets fout gegaan, probeer opnieuw";

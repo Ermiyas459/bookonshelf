@@ -11,8 +11,10 @@
                 <input type="text" id="taal" name="taal" required>
             </div>
 
+            <button onclick="history.back()" class="aanpassen">Terug</button>
 
-            <button type="submit" class="toevegen-knop">Toevoegen</button>
+            <button type="submit" class="aanpassen">Toevoegen</button>
+
         </form>
     </main>
 </div>

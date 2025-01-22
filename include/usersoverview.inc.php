@@ -10,30 +10,34 @@ try {
     echo "error!!" . $e->getMessage();
 }
 ?>
+<button class="aanpassen" onclick="window.location.href='index.php?page=add-users'">toevoegen</button>
 
-<main>
+<main1>
 
     <?php if (!empty($users)): ?>
-        <table>
-            <thead>
-            <tr>
-                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-users'">toevoegen</button>
 
-                <th>Name</th>
-                <th>Tussenvoegsel</th>
+        <table1>
+            <thead1>
+            <tr1>
+                <th1>
+
+                <th1>Name</th1>
+                <th1> image</th1>
+                <th1>Tussenvoegsel</th1>
                 <th>Achternaam</th>
-                <th>stad</th>
-                <th>straat</th>
-                <th>huis nummer</th>
-                <th>post code</th>
-                <th>email</th>
-                <th>geboorte datum</th>
-            </tr>
-            </thead>
-            <tbody>
+                <th1>stad</th1>
+                <th1>straat</th1>
+                <th1>huis nummer</th1>
+                <th1>post code</th1>
+                <th1>email</th1>
+                <th1>geboorte datum</th1>
+            </tr1>
+            </thead1>
+
+            <tbody1>
 
             <?php foreach ($users as $result): ?>
-                <tr>
+                <tr1>
 
                     <?php
                     if (isset($_SESSION['success'])) {
@@ -41,26 +45,27 @@ try {
                         unset($_SESSION['success']);
                     }
                     ?>
+                    <img src="<?= !empty($result['profile_pic']) ? htmlspecialchars($result['profile_pic']) : 'images/login.webp'; ?>" alt="Profile picture">
 
-                    <td><?= htmlspecialchars($result['name']); ?></td>
-                    <td><?= htmlspecialchars($result['middle_name']); ?></td>
-                    <td><?= htmlspecialchars($result['last_name']); ?></td>
-                    <td><?= htmlspecialchars($result['city']); ?></td>
-                    <td><?= htmlspecialchars($result['street']); ?></td>
-                    <td><?= htmlspecialchars($result['house_number']); ?></td>
-                    <td><?= htmlspecialchars($result['postal_code']); ?></td>
-                    <td><?= htmlspecialchars($result['email']); ?></td>
-                    <td><?= htmlspecialchars($result['date_of_birth']); ?></td>
-
-
-                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=edit-users&users_id=<?= $result['users_id'] ?>'">aanpassen</button> </td>
+                    <td1><?= htmlspecialchars($result['name']); ?></td1>
+                    <td1><?= htmlspecialchars($result['middle_name']); ?></td1>
+                    <td1><?= htmlspecialchars($result['last_name']); ?></td1>
+                    <td1><?= htmlspecialchars($result['city']); ?></td1>
+                    <td1><?= htmlspecialchars($result['street']); ?></td1>
+                    <td1><?= htmlspecialchars($result['house_number']); ?></td1>
+                    <td1><?= htmlspecialchars($result['postal_code']); ?></td1>
+                    <td1><?= htmlspecialchars($result['email']); ?></td1>
+                    <td1><?= htmlspecialchars($result['date_of_birth']); ?></td1>
 
 
-                    <td>  <form method="post" action="php/usersoverview.php" style="display:inline;">
+                    <td1><button class="aanpassen"  onclick="window.location.href='index.php?page=edit-users&users_id=<?= $result['users_id'] ?>'">aanpassen</button> </td1>
+
+
+                    <td1>  <form method="post" action="php/usersoverview.php" style="display:inline;">
                             <input type="hidden" name="users_id" value="<?php echo $result['users_id']; ?>">
                             <button class="verwijderen" type="submit" onclick="return confirm('Weet je zeker dat je dit boek wilt verwijderen?')">Verwijderen</button>
-                        </form> </td>
-                </tr>
+                        </form> </td1>
+                </tr1>
 
                 <?php
                 if (isset($_SESSION['error'])) {
@@ -72,12 +77,12 @@ try {
 
 
             <?php endforeach; ?>
-            </tbody>
-        </table>
+            </tbody1>
+        </table1>
     <?php else: ?>
         <p>Geen gebruikers gevonden.</p>
     <?php endif; ?>
-</main>
+</main1>
 
 
 

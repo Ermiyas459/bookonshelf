@@ -24,6 +24,7 @@ try {
         <table>
             <thead>
             <tr>
+                <th>Afbeelding</th>
                 <th>Titel</th>
                 <th>Schrijver</th>
                 <th>Genre</th>
@@ -62,6 +63,8 @@ try {
             </tbody>
         </table>
     <?php else: ?>
-        <p>Geen boeken gevonden.</p>
+        <p>
+            Geen boeken gevonden.
+        </p>
     <?php endif; ?>
 </main>

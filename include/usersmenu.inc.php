@@ -1,64 +1,56 @@
 
+<?php
+include(__DIR__ . '/../../private/db_connect.php');
+
+try {
+    $query = "
+        SELECT b.books_id, b.title, b.isbn, b.page_count, b.copies_available, b.image_path,
+               COALESCE(s.name, 'Onbekend') AS author_name, 
+               COALESCE(g.genre, 'Onbekend') AS genre_name, 
+               COALESCE(t.taal, 'Onbekend') AS language_name
+        FROM books b
+        LEFT JOIN schrijvers s ON b.author = s.author_id
+        LEFT JOIN genre g ON b.genre = g.genre_id
+        LEFT JOIN taal t ON b.language = t.taal_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Fout bij ophalen van gegevens: " . $e->getMessage());
+}
+?>
 
 
-    <?php
-    include(__DIR__ . '/../../private/db_connect.php');
+    <main-users>
+        <?php if (!empty($books)): ?>
+        <div class="book-grid">
+            <?php foreach ($books as $book): ?>
+            <div class="book-card">
+                <img src="<?= htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding">
+                <h3><?= htmlspecialchars($book['title']); ?></h3>
+                <p><strong>Auteur:</strong> <?= htmlspecialchars($book['author_name']); ?></p>
+                <p><strong>Genre:</strong> <?= htmlspecialchars($book['genre_name']); ?></p>
+                <p><strong>ISBN:</strong> <?= htmlspecialchars($book['isbn']); ?></p>
+                <p><strong>Taal:</strong> <?= htmlspecialchars($book['language_name']); ?></p>
+                <p><strong>Pagina's:</strong> <?= htmlspecialchars($book['page_count']); ?></p>
+                <p><strong>Beschikbare exemplaren:</strong> <?= htmlspecialchars($book['copies_available']); ?></p>
 
-    try {
-        $sql = "SELECT * FROM books";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $book = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "error!!" . $e->getMessage();
-    }
-    ?>
-
-    <main>
-
-        <?php if (!empty($book)): ?>
-            <table>
-                <thead>
-                <tr>
-
-                    <th>Title</th>
-                    <th>Schrijver</th>
-                    <th>Genre</th>
-                    <th>ISBN</th>
-                    <th>Taal</th>
-                    <th>Aantal Pagina's</th>
-                    <th>Beschikbare Exemplaren</th>
-                    <th>aanpassen</th>
-                    <th>verwijderen</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <?php foreach ($book as $book): ?>
-                    <tr>
-                        <td>
-                            <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
-                        </td>
-                        <td><?= htmlspecialchars($book['title']); ?></td>
-                        <td><?= htmlspecialchars($book['author']); ?></td>
-                        <td><?= htmlspecialchars($book['genre']); ?></td>
-                        <td><?= htmlspecialchars($book['isbn']); ?></td>
-                        <td><?= htmlspecialchars($book['language']); ?></td>
-                        <td><?= htmlspecialchars($book['page_count']); ?></td>
-                        <td><?= htmlspecialchars($book['copies_available']); ?></td>
 
                         <td> <form method="post" action="php/gereserveerde_boeken.php" style="display:inline;">
                             <input type="hidden" name="books_id" value="<?= $book['books_id'] ?>">
                             <input type="hidden" name="users_id" value="...">
                             <input type="hidden" name="title" value="<?= $book['title'] ?>">
-                            <input type="hidden" name="author" value="<?= $book['author'] ?>">
-                            <input type="hidden" name="genre" value="<?= $book['genre'] ?>">
+                            <input type="hidden" name="author" value="<?= $book['author_name'] ?>">
+                            <input type="hidden" name="genre" value="<?= $book['genre_name'] ?>">
                             <input type="hidden" name="isbn" value="<?= $book['isbn'] ?>">
-                            <input type="hidden" name="language" value="<?= $book['language'] ?>">
+                            <input type="hidden" name="language" value="<?= $book['language_name'] ?>">
                             <input type="hidden" name="page_count" value="<?= $book['page_count'] ?>">
-                            <input type="hidden" name="copies_available" value="<?= $book['copies_available'] ?>">
+                                <input type="hidden" name="copies_available" value="<?= $book['copies_available'] ?>">
+                            <input type="hidden" name="image_path" value="<?= $book['image_path'] ?>">
                             <button class="button_reserveren" type="submit" ">reserveren</button>
                             </form>
+
+
 
                         </td>
                         <?php
@@ -71,43 +63,28 @@
                                 <input type="hidden" name="books_id" value="<?= $book['books_id'] ?>">
                                 <input type="hidden" name="users_id" value="...">
                                 <input type="hidden" name="title" value="<?= $book['title'] ?>">
-                                <input type="hidden" name="author" value="<?= $book['author'] ?>">
-                                <input type="hidden" name="genre" value="<?= $book['genre'] ?>">
+                                <input type="hidden" name="author" value="<?= $book['author_name'] ?>">
+                                <input type="hidden" name="genre" value="<?= $book['genre_name'] ?>">
                                 <input type="hidden" name="isbn" value="<?= $book['isbn'] ?>">
-                                <input type="hidden" name="language" value="<?= $book['language'] ?>">
+                                <input type="hidden" name="language" value="<?= $book['language_name'] ?>">
                                 <input type="hidden" name="page_count" value="<?= $book['page_count'] ?>">
+                                <input type="hidden" name="image_path" value="<?= $book['image_path'] ?>">
                                 <input type="hidden" name="copies_available" value="<?= $book['copies_available'] ?>">
                                 <button class="button_lenen" type="submit">lenen</button>
                             </form> </td>
-                    </tr>
+
+
+                    </tr-users>
+            </div>
                 <?php endforeach; ?>
-                </tbody>
-            </table>
+
+                </tbody-users>
+            </table-users>
+        </div>
         <?php else: ?>
             <p>Geen boeken gevonden.</p>
         <?php endif; ?>
-    </main>
+    </main-users>
 
 
-<!--Footer Section -->
-<!--    <footer class="footer">-->
-<!--        <div class="footer-container">-->
-<!--            <div class="logo">-->
-<!--                <img src="../images/book-on-shelf.png" alt="Logo">-->
-<!--            </div>-->
-<!--            <div class="contact-info">-->
-<!--                <p>Contact Us: bookon@shelf</p>-->
-<!--                <p>Phone: +123 456 7890</p>-->
-<!--                <p>Address: 123 Book Street, Library City, 4567</p>-->
-<!--            </div>-->
-<!--            <div class="quick-links">-->
-<!--                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">About Us</a> | <a href="#">Contact</a></p>-->
-<!--            </div>-->
-<!--            <div class="social-media">-->
-<!--                <a href="#"><img src="../images/download%20(1).jpeg" alt="Facebook"></a>-->
-<!--                <a href="#"><img src="../images/download.png" alt="Twitter"></a>-->
-<!--                <a href="#"><img src="../images/download%20(2).jpeg" alt="Instagram"></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </footer>-->
 </main>

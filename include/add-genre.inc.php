@@ -1,17 +1,22 @@
 
 
 <div class="add-page">
+
     <main class="add">
         <h2>Toevoegen</h2>
 
         <form method="POST" action="php/add-genre.php" enctype="multipart/form-data">
 
             <div class="form-group">
-                <label for="name">name</label>
+                <label for="name">Genre</label>
                 <input type="text" id="genre" name="genre" required>
             </div>
+            <button onclick="history.back()" class="aanpassen">Terug</button>
 
-            <button type="submit" class="toevegen-knop">Toevoegen</button>
+            <button type="submit" class="aanpassen">Toevoegen</button>
+
         </form>
+
     </main>
+
 </div>

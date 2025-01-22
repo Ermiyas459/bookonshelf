@@ -23,7 +23,7 @@
 
                             while ($t = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                 $selected = (isset($_POST['author']) && $_POST['author'] == $t['author_id']) ? 'selected' : '';
-                                echo '<option value="' . htmlspecialchars($t['author_id']) . '" ' . $selected . '>' . htmlspecialchars($t['name']) . '</option>';
+                                echo '<option value="' . htmlspecialchars($t['author_id']) . '" ' . $selected . '>' . htmlspecialchars($t["name" ]) . '</option>';
                             }
                         } catch (PDOException $error) {
                             echo '<option value="">Fout bij ophalen van auteurs</option>';

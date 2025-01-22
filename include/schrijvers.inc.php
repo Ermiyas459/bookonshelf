@@ -19,7 +19,7 @@ try {
             <thead>
             <button class="back" onclick="history.back(-1)">back</button>
          <tr>
-                <th>Taal</th>
+                <th>schrijver</th>
                 <th>aanpassen</th>
                 <th>verwijderen</th>
                 <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-schrijvers'">toevoegen</button>
