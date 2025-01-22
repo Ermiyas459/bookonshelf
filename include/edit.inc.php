@@ -112,6 +112,8 @@ try {
                 <label for="copies_available">Aantal beschikbare exemplaren</label>
                 <input type="number" id="copies_available" name="copies_available" value="<?php echo htmlspecialchars(trim($result['copies_available'])); ?>" required>
             </div>
+            <label for="images_path">Afbeelding:</label>
+            <input type="file" name="images_path" id="images_path" value="<?php echo htmlspecialchars(trim($result['image_path'])); ?>" accept="image/*" required><br><br>
 
             <!-- Submit Button -->
             <button type="submit" class="aanpassen">Aanpassen</button>

@@ -36,7 +36,9 @@
 
                 <?php foreach ($book as $book): ?>
                     <tr>
-
+                        <td>
+                            <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
+                        </td>
                         <td><?= htmlspecialchars($book['title']); ?></td>
                         <td><?= htmlspecialchars($book['author']); ?></td>
                         <td><?= htmlspecialchars($book['genre']); ?></td>

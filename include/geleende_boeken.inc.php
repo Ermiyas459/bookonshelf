@@ -37,7 +37,9 @@
                 <tbody>
                 <?php foreach ($books as $book): ?>
                     <tr>
-
+                        <td>
+                            <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
+                        </td>
                         <td><?php echo htmlspecialchars($book['title']); ?></td>
                         <td><?php echo htmlspecialchars($book['date-borrowed']); ?></td>
 

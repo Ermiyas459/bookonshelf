@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start session for error handling
+session_start();
 include(__DIR__ . '/../../private/db_connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,33 +11,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
 
-    // Validatie
-    if (empty($title) || empty($author) || empty($genre) || empty($language) ||
-        empty($isbn) || empty($page_count) || empty($copies_available)) {
-        $_SESSION['error'] = 'Alle velden zijn verplicht.';
+    // Validatie van de afbeelding
+    if (!isset($_FILES['images_path']) || $_FILES['images_path']['error'] !== UPLOAD_ERR_OK) {
+        $_SESSION['error'] = 'Het uploaden van een afbeelding is verplicht.';
+        header('Location: ../index.php?page=add');
+        exit;
+    }
+
+    // Controleren op bestandstype en grootte
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $max_file_size = 2 * 1024 * 1024; // 2MB
+
+    if (!in_array($_FILES['images_path']['type'], $allowed_types)) {
+        $_SESSION['error'] = 'Alleen JPEG-, PNG- en GIF-bestanden zijn toegestaan.';
+        header('Location: index.php?page=add');
+        exit;
+    }
+
+    if ($_FILES['images_path']['size'] > $max_file_size) {
+        $_SESSION['error'] = 'Bestandsgrootte mag niet groter zijn dan 2MB.';
         header('Location: ../index.php?page=add');
         exit;
     }
 
     // Verwerk afbeelding
-    $image_path = null;
-    if (isset($_FILES['image_path']) && $_FILES['image_path']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = __DIR__ . '/../../uploads/';
-        $file_name = basename($_FILES['image_path']['name']);
-        $target_file = $upload_dir . $file_name;
+    $upload_dir = __DIR__ . '/../../uploads/';
+    $file_name = basename($_FILES['images_path']['name']);
+    $target_file = $upload_dir . $file_name;
 
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        if (move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file)) {
-            $image_path = '/uploads/' . $file_name;
-        } else {
-            $_SESSION['error'] = 'Fout bij het uploaden van de afbeelding.';
-            header('Location: ../index.php?page=add');
-            exit;
-        }
+    if (!is_dir($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
     }
+
+    if (!move_uploaded_file($_FILES['images_path']['tmp_name'], $target_file)) {
+        $_SESSION['error'] = 'Fout bij het uploaden van de afbeelding.';
+        header('Location: ../index.php?page=add');
+        exit;
+    }
+
+    $image_path = '/uploads/' . $file_name;
 
     // SQL-query
     $sql = "INSERT INTO books (title, author, genre, language, isbn, page_count, copies_available, image_path) 
@@ -56,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
             $_SESSION['success'] = "Boek succesvol toegevoegd.";
-            header("Location: ../index.php?page=manager_menu");
+            header("Location:../index.php?page=manager_menu");
             exit;
         } else {
             $_SESSION['error'] = "Er is iets fout gegaan bij het opslaan.";
