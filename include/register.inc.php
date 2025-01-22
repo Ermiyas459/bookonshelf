@@ -16,7 +16,7 @@
                 }
             </style>
             <div class="form-group">
-                <label for="name">Voornaam</label>
+                <label for="name">Voornaam*</label>
                 <input type="text" id="name" name="name" required>
             </div>
 
@@ -26,46 +26,48 @@
             </div>
 
             <div class="form-group">
-                <label for="last_name">Achternaam</label>
+                <label for="last_name">Achternaam*</label>
                 <input type="text" id="last_name" name="last_name" required>
             </div>
 
             <div class="form-group">
-                <label for="city">Woonplaats</label>
+                <label for="city">Woonplaats*</label>
                 <input type="text" id="city" name="city" required>
             </div>
             <div class="form-group">
-                <label for="street">Straat</label>
+                <label for="street">Straat*</label>
                 <input type="text" id="street" name="street" required>
             </div>
             <div class="form-group">
-                <label for="house_number">Huisnummer</label>
+                <label for="house_number">Huisnummer*</label>
                 <input type="text" id="house_number" name="house_number" required>
             </div>
             <div class="form-group">
-                <label for="postal_code">Postcode</label>
+                <label for="postal_code">Postcode*</label>
                 <input type="text" id="postal_code" name="postal_code" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email*</label>
                 <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
-                <label for="password">Wachtwoord</label>
+                <label for="password">Wachtwoord*</label>
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="confirm_password">Bevestig Wachtwoord</label>
+                <label for="confirm_password">Bevestig Wachtwoord*</label>
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
 
             <div  class="form-group"  >
-                <label for="dob">Date of Birth:</label>
+                <label for="dob">Date of Birth*</label>
                 <input type="date" id="dob" name="dob" required>
             </div>
 
-
+          <!--  <label for="profile_pic">profile picture:</label>
+            <input type="file" name="profile_pic" id="profile_pic" accept="image/*"><br><br>
+-->
 
             <?php
             if (isset($_SESSION['error'])) {

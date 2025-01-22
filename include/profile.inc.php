@@ -18,10 +18,15 @@ try {
 
 
 <main-profile>
-    <h1> <img class="profiel" src="images/eli.jpg"></h1>
 
     <?php if (!empty($books)): ?>
         <?php foreach ($books as $result): ?>
+
+               <div class="profile-item">
+               <span <img src="<?php echo htmlspecialchars($result['image_path']); ?>" alt="image"></span>
+               </div>
+
+
             <div class="profile-item">
                 <span class="label">Naam:</span>
                 <span class="value"><?= htmlspecialchars($result['name']); ?></span>
@@ -60,7 +65,7 @@ try {
             </div>
             <div class="profile-item">
                 <span class="label">Geboortedatum:</span>
-                <span class="value"><?= htmlspecialchars($result['birth_date']); ?></span>
+                <span class="value"><?= htmlspecialchars($result['date_of_birth']); ?></span>
             </div>
         <?php endforeach; ?>
     <?php else: ?>

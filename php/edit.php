@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isbn = $_POST['isbn'];
     $language = $_POST['language'];
     $page_count = $_POST['page_count'];
-    $copies_available = $_POST['copies_available']; // Not needed for the reserved process
+    $copies_available = $_POST['copies_available'];
     $books_id = $_POST['books_id'];
 
 

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!in_array($_FILES['images_path']['type'], $allowed_types)) {
         $_SESSION['error'] = 'Alleen JPEG-, PNG- en GIF-bestanden zijn toegestaan.';
-        header('Location: index.php?page=add');
+        header('Location: ../index.php?page=add');
         exit;
     }
 
