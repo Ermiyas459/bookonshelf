@@ -1104,9 +1104,8 @@ main-profile {
 
 
 
-/* Hoofdcontainer */
 main1 {
-    max-width: 1200px;
+    max-width: 1700px;
     margin: 0 auto;
     background: #fff;
     border-radius: 10px;
@@ -1123,8 +1122,8 @@ table1 {
 
 /* Tabelkopstijl */
 thead1 tr1 {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #f7f9f6;
+    color: #0c0c0c;
     text-align: left;
 }
 
@@ -1135,29 +1134,32 @@ tbody1 tr1 {
 
 /* Afbeeldingen */
 table1 img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    display: block;
     object-fit: cover;
-    margin-right: 10px;
 }
 
 /* Celstijl */
-td1, th1 {
-    padding: 10px;
+ th1 {
+    padding: 20px;
     text-align: left;
-}
+    margin-right: 10px;
+ }
 
-/* Rij met afbeelding en naam */
+ td1{
+     padding: 30px;
+ }
+
 td1:first-child {
     display: flex;
-    align-items: center;
     gap: 10px;
 }
 
-/* Afwisseling in rijen */
-tbody1 tr1:nth-child(even) {
-    background-color: #f2f2f2;
+tb1{
+    padding: 20px;
+    margin-right: 100px;
 }
 
 /* Knoppenstijl */
@@ -1174,6 +1176,7 @@ button.aanpassen1 {
     color: #fff;
 }
 
+
 button.verwijderen1 {
     background-color: #dc3545;
     color: #fff;
@@ -1182,18 +1185,6 @@ button.verwijderen1 {
 button1:hover {
     opacity: 0.9;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 h1 {
@@ -1235,6 +1226,14 @@ h1 {
     color: darkblue;
 }
 
+.profile-pic img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+    object-fit: cover;
+}
 
 
 .add, .edit {

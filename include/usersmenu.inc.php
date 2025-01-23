@@ -22,6 +22,13 @@ try {
 
 
     <main-users>
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo '<p class="error">' . $_SESSION['error'] . '</p>';
+            unset($_SESSION['error']);
+        }
+        ?>
+
         <?php if (!empty($books)): ?>
         <div class="book-grid">
             <?php foreach ($books as $book): ?>

@@ -64,9 +64,27 @@
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" required>
             </div>
-            <div>
-                <label for="role">role:</label>
-                <input type="text" id="role" name="role" required>
+            <div class="form-group">
+                <label for="author">Auteur</label>
+                <div class="select-with-link">
+                    <select id="author" name="author" required>
+                        <option value="" <?php echo isset($_POST['author']) && $_POST['author'] == '' ? 'selected' : ''; ?>>kies een author
+                </option>
+                <?php
+                include(__DIR__ . '/../../private/db_connect.php');
+                try {
+                    $query = "SELECT * FROM `role`";
+                    $stmt = $pdo->query($query);
+
+                    while ($t = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $selected = (isset($_POST['role']) && $_POST['role'] == $t['role_id']) ? 'selected' : '';
+                        echo '<option value="' . htmlspecialchars($t['role_id']) . '" ' . $selected . '>' . htmlspecialchars($t["role" ]) . '</option>';
+                    }
+                } catch (PDOException $error) {
+                    echo '<option value="">Fout bij ophalen van auteurs</option>';
+                }
+                ?>
+                </select>
             </div>
 
 
