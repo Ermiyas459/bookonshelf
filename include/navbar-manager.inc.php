@@ -22,8 +22,21 @@
     <div class="managers-buttons">
         <button class="home" onclick="window.location.href='index.php?page=manager_menu'">boeken</button>
         <button class="toevegen" onclick="window.location.href='index.php?page=usersoverview'">gebruikers</button>
-        <button class="toevegen" onclick="window.location.href='index.php?page=add'">toevoegen</button>
-        <button name="home" onclick="window.location.href='index.php?page=beheren'">andere</button>
+        <div class="dropdown">
+            <button class="dropbtn">toevoegen</button>
+            <div class="dropdown-content">
+                <a href="index.php?page=add">Boeken</a>
+                <a href="index.php?page=add-users">Gebruikers</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Meer</button>
+            <div class="dropdown-content">
+                <a href="index.php?page=genre">Genre Beheren</a>
+                <a href="index.php?page=taal">Taal Beheren</a>
+                <a href="index.php?page=schrijvers">Schrijvers Beheren</a>
+            </div>
+        </div>
 <!--        <div class="user-logo">-->
 <!---->
 <!--            <a href="index.php?page=beheren" class="add-new-link"> <img src="images/dropdown.png"></a>-->

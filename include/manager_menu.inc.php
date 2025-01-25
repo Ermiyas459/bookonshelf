@@ -55,7 +55,7 @@ try {
                     <td>
                         <form method="post" action="php/manager_menu.php" style="display:inline;">
                             <input type="hidden" name="books_id" value="<?= $book['books_id']; ?>">
-                            <button class="verwijderen" type="submit" onclick="return confirm('Weet je zeker dat je dit boek wilt verwijderen?')">Verwijderen</button>
+                            <button class="verwijderen" type="submit"  ">Verwijderen </button>
                         </form>
                     </td>
                 </tr>

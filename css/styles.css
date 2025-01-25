@@ -39,14 +39,12 @@ body.user_menu {
 
 }*/
 
-
-.main-group{
+.main-group {
     display: flex;
-    position: absolute;
-    bottom: 10000px;
-    height: 100vh;
+    position: absolute; /* Change from absolute to relative */
     box-sizing: border-box;
     text-transform: capitalize;
+    overflow-y: scroll;
 
 }
 
@@ -55,6 +53,9 @@ body.user_menu {
     grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     padding: 20px;
+    width: 97%;
+    max-height: 1150px; /* Set a fixed height for the container */
+    min-height: 1150px; /* Set a fixed height for the container */
 }
 
 .book-card {
@@ -636,8 +637,8 @@ header {
     background-color: rgba(255, 0, 0, 0.1);
     color: #dc3545;
     padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    border-radius: 60px;
+    margin-bottom: 100px;
     font-size: 14px;
 }
 
@@ -655,6 +656,51 @@ header {
         width: 80px;
     }
 }
+
+
+
+
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #c1cac2;}
+
+
+
+
+
+
+
 
 
 /* Remove the block container */
@@ -1248,16 +1294,13 @@ h1 {
 
 
 
-.footer {
-    background-color: #f1f1f1;
-    padding: 20px 0;
-    width: 100%;
-    margin-top: 1000px;
-    position: absolute;
-    top: 300px;
-    left: 0px;
-}
-
+/*.footer {*/
+/*    background-color: #f1f1f1;*/
+/*    padding: 20px 0;*/
+/*    width: 100%;*/
+/*    position: absolute;*/
+/*top: 3500px;*/
+/*}*/
 .footer-container {
     display: flex;
     flex-direction: column;
