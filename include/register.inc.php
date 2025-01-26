@@ -4,10 +4,7 @@
 
 <div class="register-page">
     <main class="register">
-<!--        <h2>Registreren</h2>-->
-        <?php if (isset($error)): ?>
-            <p style="color:#000333;"><?php echo $error; ?></p>
-        <?php endif; ?>
+
         <form action="php/register.php" method="POST"  enctype="multipart/form-data">
 
 
