@@ -29,6 +29,7 @@
                 <tr>
 
 
+                    <th> afbeelding</th>
                     <th> title</th>
                     <th>datum geleend</th>
                     <th>terugbrengen</th>
@@ -38,7 +39,8 @@
                 <?php foreach ($books as $book): ?>
                     <tr>
                         <td>
-                            <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
+                            <img src="<?= htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
+
                         </td>
                         <td><?php echo htmlspecialchars($book['title']); ?></td>
                         <td><?php echo htmlspecialchars($book['date-borrowed']); ?></td>
@@ -53,6 +55,7 @@
                                 <input type="hidden" name="isbn" value="<?php echo $book['isbn']; ?>">
                                 <input type="hidden" name="language" value="<?php echo $book['language']; ?>">
                                 <input type="hidden" name="page_count" value="<?php echo $book['page_count']; ?>">
+                                <input type="hidden" name="image_path" value="<?php echo $book['image_path']; ?>">
                                 <input type="hidden" name="copies_available" value="<?php echo $book['copies_available']; ?>">
 
                                 <button class="button_lenen" type="submit">terug brengen</button>

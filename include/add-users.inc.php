@@ -10,11 +10,7 @@
         <?php endif; ?>
         <form action="php/add-users.php" method="POST">
 
-            <style>
-                .error {
-                    color: red;
-                }
-            </style>
+
             <div class="form-group">
                 <label for="name">Voornaam</label>
                 <input type="text" id="name" name="name" required>
@@ -60,16 +56,16 @@
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" required>
             </div>
+
             <div class="form-group">
-                <label for="author">Auteur</label>
+                <label for="author">Role</label>
                 <div class="select-with-link">
                     <select id="author" name="author" required>
-                        <option value="" <?php echo isset($_POST['author']) && $_POST['author'] == '' ? 'selected' : ''; ?>>kies een author
-                </option>
+                        <option value="" <?php echo isset($_POST['author']) && $_POST['author'] == '' ? 'selected' : ''; ?>>kies een role</option>
                 <?php
                 include(__DIR__ . '/../../private/db_connect.php');
                 try {
@@ -84,7 +80,8 @@
                     echo '<option value="">Fout bij ophalen van auteurs</option>';
                 }
                 ?>
-                </select>
+                    </select>
+                </div>
             </div>
 
 

@@ -10,11 +10,13 @@
         <?php endif; ?>
         <form action="php/register.php" method="POST"  enctype="multipart/form-data">
 
-            <style>
-                .error {
-                    color: red;
-                }
-            </style>
+
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+            ?>
             <div class="form-group">
                 <label for="name">Voornaam*</label>
                 <input type="text" id="name" name="name" required>
@@ -67,16 +69,10 @@
 
             <div class="form-group">
                 <label for="images_path">Profielafbeelding</label>
-                <input type="file" name="profile_pic" id="images_path" accept="image/*" ><br><br> <!-- Pas de name aan naar profile_pic -->
+                <input type="file" name="profile_pic" id="images_path" accept="image/*" >
             </div>
 
 
-            <?php
-            if (isset($_SESSION['error'])) {
-                echo '<p class="error">' . $_SESSION['error'] . '</p>';
-                unset($_SESSION['error']);
-            }
-            ?>
             <button type="submit" class="register-button">Registreren</button>
         </form>
     </main>

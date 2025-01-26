@@ -27,9 +27,10 @@
                 <tr>
 
 
+                    <th> afbeelding</th>
                     <th> title</th>
                     <th>datum gereserveerd</th>
-<!--                    <th>terugbrengen</th>-->
+                    <th>onreserveren</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,12 @@
                         </td>
                         <td><?php echo htmlspecialchars($book['title']); ?></td>
                         <td><?php echo htmlspecialchars($book['reserved_at']); ?></td>
+                        <td>
+                            <form method="post" action="php/onreserveren.php" style="display:inline;">
+                                <input type="hidden" name="books_id" value="<?= $book['books_id']; ?>">
+                                <button class="verwijderen" type="submit"  ">Delete </button>
+                            </form>
+                        </td>
 
 
 <!--                        <td>  <form method="post" action="php/terug-brengen.php" style="display:inline;">-->

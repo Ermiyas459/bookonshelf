@@ -4,6 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <?php
+    include(__DIR__ . '/../../private/db_connect.php');
+    $users_id = $_SESSION['users_id'];
+
+    try {
+        $sql = "SELECT * FROM users_table WHERE users_id = :users_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    ?>
+    <?php foreach ($result as $result): ?>
 
 
 
@@ -21,7 +36,13 @@
     <div class="title">BookOnShelf</div>
     <div class="managers-buttons">
         <button class="home" onclick="window.location.href='index.php?page=manager_menu'">boeken</button>
-        <button class="toevegen" onclick="window.location.href='index.php?page=usersoverview'">gebruikers</button>
+<!--        <div class="dropdown">-->
+<!--            <button class="dropbtn">Profiel</button>-->
+<!--            <div class="dropdown-content">-->
+<!--                <a href="index.php?page=profile">Ik</a>-->
+<!--                <a href="index.php?page=usersoverview">Alle Gebruikers</a>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="dropdown">
             <button class="dropbtn">toevoegen</button>
             <div class="dropdown-content">
@@ -37,16 +58,16 @@
                 <a href="index.php?page=schrijvers">Schrijvers Beheren</a>
             </div>
         </div>
-<!--        <div class="user-logo">-->
-<!---->
-<!--            <a href="index.php?page=beheren" class="add-new-link"> <img src="images/dropdown.png"></a>-->
-<!--            -->
-<!---->
-<!---->
-<!---->
-<!--        </div>-->
+        <div class="dropdown">
+            <button class="dropbtn"><?= htmlspecialchars($result['name']); ?>'s Profiel ↕ </button>
+            <div class="dropdown-content">
+                <a href="index.php?page=profile">Ik</a>
+                <a href="index.php?page=usersoverview">Alle Gebruikers</a>
+                <a href="index.php?page=Logout">Uitloggen</a>
+            </div>
+        </div>
 
-        <button class="uitloggen" onclick="window.location.href='index.php?page=Logout'">Uitloggen</button>
+<!--        <button class="uitloggen" onclick="window.location.href='index.php?page=Logout'">Uitloggen</button>-->
 
 
     </div>
@@ -54,6 +75,7 @@
 
 
 </html>
+<?php endforeach; ?>
 
 <!---->
 <!--<!-- Footer Section -->-->

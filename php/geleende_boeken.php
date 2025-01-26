@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $language = $_POST['language'];
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
+    $image_path = $_POST['image_path'];
 
     if (!$books_id || !$title || !$author || !$genre || !$isbn || !$language || !$page_count || $copies_available === null) {
         echo 'Error: Missing required book information.';
@@ -24,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($copies_available == 0) {
-        $error = "geen exemplaren over";
-        header( 'location: ../index.php?page=usersmenu&error=' . urlencode($error));
+        header( 'location: ../index.php?page=usersmenu');
         $_SESSION['error']  = "helaas zijn er " . $copies_available . " exemplaren over van dit product" ;
         exit();
 
     }
+
 
 
     $sql = "SELECT COUNT(*) FROM lenen WHERE users_id = :users_id";
@@ -56,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($count == 0) {
-        $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available )
-                VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available)";
+        $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available , image_path )
+                VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available , :image_path)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':books_id', $books_id, PDO::PARAM_INT);
         $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':language', $language);
         $stmt->bindParam(':page_count', $page_count, PDO::PARAM_INT);
         $stmt->bindParam(':copies_available', $copies_available, PDO::PARAM_INT);
+        $stmt->bindParam(':image_path', $image_path);
         $stmt->execute();
 
         $sql = "UPDATE books SET copies_available = copies_available - 1 WHERE books_id = :books_id";

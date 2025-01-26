@@ -17,7 +17,9 @@
                 unset($_SESSION['error']);
             }
             ?>
+            <a href="index.php?page=register" class="add-new-link">Geen account?</a>
             <input class="btn" type="submit" value="Login">
+
         </form>
     </div>
 </div>

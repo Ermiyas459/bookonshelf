@@ -30,12 +30,14 @@
     <div class="title">BookOnShelf</div>
     <div class="users-buttons">
         <button class="home" onclick="window.location.href='index.php?page=usersmenu'">boeken</button>
-        <button class="gereserveerde" onclick="window.location.href='index.php?page=gereserveerde_boeken'">gereserveerde boeken</button>
-        <button class="geleende" onclick="window.location.href='index.php?page=geleende_boeken'">geleende boeken</button>
+<!--        <button class="gereserveerde" onclick="window.location.href='index.php?page=gereserveerde_boeken'">gereserveerde boeken</button>-->
+<!--        <button class="geleende" onclick="window.location.href='index.php?page=geleende_boeken'">geleende boeken</button>-->
         <div class="dropdown">
-            <button class="dropbtn"><?= htmlspecialchars($result['name']); ?></button>
+            <button class="dropbtn"><?= htmlspecialchars($result['name']); ?>'s Profiel ↕ </button>
             <div class="dropdown-content">
                 <a href="index.php?page=profile">Mijn Profiel bekijken</a>
+                <a href="index.php?page=geleende_boeken">Mijn geleende boeken bekijken</a>
+                <a href="index.php?page=gereserveerde_boeken">Mijn gereserveerde boeken bekijken</a>
                 <a href="index.php?page=Logout">Uitloggen</a>
             </div>
         </div>

@@ -101,9 +101,11 @@
                 unset($_SESSION['error']);
             }
             ?>
+            <div class="form-group">
+
             <label for="images_path">Afbeelding:</label>
             <input type="file" name="images_path" id="images_path" accept="image/*" required><br><br>
-
+            </div>
 
             <button type="submit" class="aanpassen">Toevoegen</button>
         </form>

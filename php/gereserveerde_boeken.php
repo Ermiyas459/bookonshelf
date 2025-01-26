@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $language = $_POST['language'];
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
+    $image_path = $_POST['image_path'];
 
     if (!$books_id || !$title || !$author || !$genre || !$isbn || !$language || !$page_count || $copies_available === null) {
         echo 'Error: Missing required book information.';
@@ -71,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($copies_available == 0 ) {
-        $sql = "INSERT INTO reserveren (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available)
-                VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available)";
+        $sql = "INSERT INTO reserveren (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available , image_path)
+                VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available , :image_path)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':books_id', $books_id, PDO::PARAM_INT);
         $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':language', $language);
         $stmt->bindParam(':page_count', $page_count, PDO::PARAM_INT);
         $stmt->bindParam(':copies_available', $copies_available, PDO::PARAM_INT);
+        $stmt->bindParam(':image_path', $image_path);
         $stmt->execute();
 
 
@@ -90,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: ../index.php?page=gereserveerde_boeken');
         exit();
     } else {
-        $_SESSION['error'] = "er zijn   " . $copies_available . " examplaren over van dit product ";
+        $_SESSION['error'] = "er zijn   " . $copies_available . " examplaren over van dit product, Dus u kunt gerust het boek lenen ";
         header('Location: ../index.php?page=usersmenu');
         exit();
     }
