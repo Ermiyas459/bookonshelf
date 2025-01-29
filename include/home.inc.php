@@ -85,7 +85,7 @@
                 <p>Address: 123 Book Street, Library City, 4567</p>
             </div>
             <div class="quick-links">
-                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">About Us</a> | <a href="#">Contact</a></p>
+                <p><a href="index.php?page=privacy policy ">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">About Us</a> | <a href="#">Contact</a></p>
             </div>
             <div class="social-media">
                 <a href="#"><img src="images/download%20(1).jpeg" alt="Facebook"></a>

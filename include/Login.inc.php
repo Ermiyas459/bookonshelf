@@ -1,4 +1,5 @@
 <?php //include 'navbar.inc.php'; ?>
+
 <div class="login">
     <div class="login_box">
         <h2>Login</h2>
