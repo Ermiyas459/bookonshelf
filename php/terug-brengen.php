@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $language = $_POST['language'];
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
-    $images_path=$_POST['images_path'];
+    $image_path=$_POST['image_path'];
 
     try {
 

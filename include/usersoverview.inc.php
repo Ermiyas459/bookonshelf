@@ -22,14 +22,7 @@ try {
             <tr>
                 <th>Profile foto</th>
                 <th>Naam</th>
-                <th>Tussenvoegsel</th>
-                <th>Achternaam</th>
-                <th>stad</th>
-                <th>straat</th>
-                <th>huis nummer</th>
-                <th>post code</th>
                 <th>email</th>
-                <th>geboorte datum</th>
 
             </tr>
             </thead>
@@ -38,19 +31,11 @@ try {
             <?php foreach ($users as $result): ?>
                 <tr>
                     <td>
-                        <img src="<?= !empty($result['profile_pic']) ? htmlspecialchars($result['profile_pic']) : 'images/login.webp'; ?>" alt="Profile photo"style="width: 100px; height: auto;">
+                        <img class="boek-afbeelding" src="<?= !empty($result['profile_pic']) ? htmlspecialchars($result['profile_pic']) : 'images/login.webp'; ?>" >
 
                     </td>
-
                     <td><?= htmlspecialchars($result['name']); ?></td>
-                    <td><?= htmlspecialchars($result['middle_name']); ?></td>
-                    <td><?= htmlspecialchars($result['last_name']); ?></td>
-                    <td><?= htmlspecialchars($result['woonplaats']); ?></td>
-                    <td><?= htmlspecialchars($result['street']); ?></td>
-                    <td><?= htmlspecialchars($result['house_number']); ?></td>
-                    <td><?= htmlspecialchars($result['postal_code']); ?></td>
                     <td><?= htmlspecialchars($result['email']); ?></td>
-                    <td><?= htmlspecialchars($result['date_of_birth']); ?></td>
 
 
 

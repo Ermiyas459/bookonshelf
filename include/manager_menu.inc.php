@@ -4,7 +4,7 @@ include(__DIR__ . '/../../private/db_connect.php');
 
 
 try {
-    // SQL-query om boeken en gerelateerde gegevens op te halen
+
     $query = "SELECT b.books_id, b.title, b.isbn, b.page_count, b.copies_available, b.image_path,
                      COALESCE(s.name, 'Onbekend') AS author_name, 
                      COALESCE(g.genre, 'Onbekend') AS genre_name, 
@@ -44,8 +44,9 @@ try {
             <?php foreach ($books as $book): ?>
                 <tr>
                     <td>
-                        <img src="<?php echo htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding" style="width: 100px; height: auto;">
+                        <img class="boek-afbeelding" src="<?= htmlspecialchars($book['image_path']); ?>" alt="Boekafbeelding">
                     </td>
+
                     <td><?= htmlspecialchars($book['title']); ?></td>
                     <td><?= htmlspecialchars($book['author_name']); ?></td>
                     <td><?= htmlspecialchars($book['genre_name']); ?></td>

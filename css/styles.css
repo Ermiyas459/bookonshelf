@@ -134,6 +134,7 @@ body.user_menu {
     margin-top: 10px;
 }
 
+
 .button_reserveren,
 .button_lenen {
     padding: 10px 20px;
@@ -216,6 +217,17 @@ td {
     transition: background-color 0.2s ease;
 }
 
+.boek-afbeelding {
+    width: 100px;  /* Of pas aan naar wens */
+    height: auto; /* Zorgt ervoor dat alle afbeeldingen dezelfde hoogte hebben */
+    object-fit: cover; /* Zorgt ervoor dat de afbeelding wordt bijgesneden en niet vervormd */
+    display: block; /* Voorkomt ongewenste witruimte onder de afbeelding */
+    border-radius: 5px; /* Optioneel: afgeronde hoeken */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Optioneel: schaduw voor een mooi effect */
+}
+
+
+
 /* Row hover effect */
 tr:hover td {
     background-color: #f9fafb;
@@ -243,14 +255,14 @@ tr:last-child td {
 button1 {
     display: block;
 
-    width: 100%;                  /* Optional: makes buttons take up full width */
-    margin-bottom: 50px;          /* Space between buttons */
-    background-color: #0047ab;      /* Blue background */
-    color: white;                /* White text */
+    width: 100%;
+    margin-bottom: 50px;
+    background-color: #0047ab;
+    color: white;
     padding: 30px;    
-    font-size: 40px;              /* Font size */
-    cursor: pointer;             /* Makes the cursor a pointer on hover */
-    transition: background-color 0.3s;  /* Smooth transition for hover effect */
+    font-size: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s;
     box-sizing: border-box;
 
 }

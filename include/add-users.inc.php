@@ -83,9 +83,9 @@
             </div>
 
             <div class="form-group">
-                <label for="rol">Role</label>
+                <label for="woonplaats">Role</label>
                 <div class="select-with-link">
-                    <select id="role" name="role" required>
+                    <select id="woonplaats" name="woonplaats" required>
                         <option value="" <?php echo isset($_POST['role']) && $_POST['role'] == '' ? 'selected' : ''; ?>>kies een role</option>
                 <?php
                 include(__DIR__ . '/../../private/db_connect.php');
