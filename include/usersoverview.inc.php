@@ -2,84 +2,66 @@
 include(__DIR__ . '/../../private/db_connect.php');
 
 try {
-    $query = "
-        SELECT u.users_id, u.name, u.middle_name, u.last_name, u.email, u.city, u.street, u.house_number, 
-               u.postal_code, u.date_of_birth, 
-               COALESCE(r.role, 'Onbekend') AS role_name
-        FROM users_table u
-        LEFT JOIN role r ON u.role = r.role_id";
-    $stmt = $pdo->prepare($query);
+    $sql = "SELECT * FROM users_table ";
+    $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Fout bij ophalen van gegevens: " . $e->getMessage());
+    echo "Error: " . $e->getMessage();
 }
-
-
 ?>
 
-<main1>
 
+
+<main>
 
     <?php if (!empty($users)): ?>
 
-        <table1>
-            <thead1>
-            <tr1>
-                <th1>
-
-                <th1>Profile foto</th1>
-                <th1>Naam</th1>
-                <th1>Tussenvoegsel</th1>
+        <table>
+            <thead>
+            <tr>
+                <th>Profile foto</th>
+                <th>Naam</th>
+                <th>Tussenvoegsel</th>
                 <th>Achternaam</th>
-                <th1>stad</th1>
-                <th1>straat</th1>
-                <th1>huis nummer</th1>
-                <th1>post code</th1>
-                <th1>email</th1>
-                    <th1>geboorte datum</th1>
-                <th1>role</th1>
+                <th>stad</th>
+                <th>straat</th>
+                <th>huis nummer</th>
+                <th>post code</th>
+                <th>email</th>
+                <th>geboorte datum</th>
 
-                    <toevoegen1>
-                        <button class="aanpassen1" onclick="window.location.href='index.php?page=add-users'">toevoegen</button>
-                    </toevoegen1>
-            </tr1>
-            </thead1>
-
-            <tbody1>
+            </tr>
+            </thead>
+            <tbody>
 
             <?php foreach ($users as $result): ?>
-                <tr1>
+                <tr>
+                    <td>
+                        <img src="<?= !empty($result['profile_pic']) ? htmlspecialchars($result['profile_pic']) : 'images/login.webp'; ?>" alt="Profile photo"style="width: 100px; height: auto;">
 
-                    <?php
-                    if (isset($_SESSION['success'])) {
-                        echo '<p class="succes">' . $_SESSION['success'] . '</p>';
-                        unset($_SESSION['success']);
-                    }
-                    ?>
-                    <img src="<?= !empty($result['profile_pic']) ? htmlspecialchars($result['profile_pic']) : 'images/login.webp'; ?>" alt="Profile photo">
+                    </td>
 
-                    <td1><?= htmlspecialchars($result['name']); ?></td1>
-                    <td1><?= htmlspecialchars($result['middle_name']); ?></td1>
-                    <td1><?= htmlspecialchars($result['last_name']); ?></td1>
-                    <td1><?= htmlspecialchars($result['city']); ?></td1>
-                    <td1><?= htmlspecialchars($result['street']); ?></td1>
-                    <td1><?= htmlspecialchars($result['house_number']); ?></td1>
-                    <td1><?= htmlspecialchars($result['postal_code']); ?></td1>
-                    <td1><?= htmlspecialchars($result['email']); ?></td1>
-                    <td1><?= htmlspecialchars($result['date_of_birth']); ?></td1>
-                    <td1><?= htmlspecialchars($result['role_name']); ?></td1>
+                    <td><?= htmlspecialchars($result['name']); ?></td>
+                    <td><?= htmlspecialchars($result['middle_name']); ?></td>
+                    <td><?= htmlspecialchars($result['last_name']); ?></td>
+                    <td><?= htmlspecialchars($result['woonplaats']); ?></td>
+                    <td><?= htmlspecialchars($result['street']); ?></td>
+                    <td><?= htmlspecialchars($result['house_number']); ?></td>
+                    <td><?= htmlspecialchars($result['postal_code']); ?></td>
+                    <td><?= htmlspecialchars($result['email']); ?></td>
+                    <td><?= htmlspecialchars($result['date_of_birth']); ?></td>
 
 
 
-                    <tb1><button class="aanpassen"  onclick="window.location.href='index.php?page=edit-users&users_id=<?= $result['users_id'] ?>'">aanpassen</button> </tb1>
+                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=edit-users&users_id=<?= $result['users_id'] ?>'">aanpassen</button> </td>
 
 
-                    <tb1>  <form method="post" action="php/usersoverview.php" style="display:inline;">
+                    <td>  <form method="post" action="php/usersoverview.php" style="display:inline;">
                             <input type="hidden" name="users_id" value="<?php echo $result['users_id']; ?>">
                             <button class="verwijderen" type="submit" onclick="return confirm('Weet je zeker dat je dit boek wilt verwijderen?')">Verwijderen</button>
-                        </form> </tb1>
-                </tr1>
+                        </form> </td>
+                </tr>
 
                 <?php
                 if (isset($_SESSION['error'])) {
@@ -91,12 +73,18 @@ try {
 
 
             <?php endforeach; ?>
-            </tbody1>
-        </table1>
+            </tbody>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<p class="succes">' . $_SESSION['success'] . '</p>';
+                unset($_SESSION['success']);
+            }
+            ?>
+        </table>
     <?php else: ?>
         <p>Geen gebruikers gevonden.</p>
     <?php endif; ?>
-</main1>
+</main>
 
 
 

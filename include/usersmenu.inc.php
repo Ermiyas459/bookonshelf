@@ -60,7 +60,7 @@ try {
                             <input type="hidden" name="page_count" value="<?= $book['page_count'] ?>">
                                 <input type="hidden" name="copies_available" value="<?= $book['copies_available'] ?>">
                             <input type="hidden" name="image_path" value="<?= $book['image_path'] ?>">
-                            <button class="button_reserveren" type="submit" ">reserveren</button>
+                            <button class="button_reserveren" type="submit" ">Reserveren</button>
                             </form>
 
 
@@ -78,7 +78,7 @@ try {
                                 <input type="hidden" name="page_count" value="<?= $book['page_count'] ?>">
                                 <input type="hidden" name="image_path" value="<?= $book['image_path'] ?>">
                                 <input type="hidden" name="copies_available" value="<?= $book['copies_available'] ?>">
-                                <button class="button_lenen" type="submit">lenen</button>
+                                <button class="button_lenen" type="submit">Lenen</button>
                             </form> </td>
 
             </div>

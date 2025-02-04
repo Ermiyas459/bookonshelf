@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->execute()) {
 
+
             // Step 2: Check if the book is reserved
             $sql = "SELECT users_id FROM reserveren WHERE books_id = :books_id LIMIT 1";
             $stmt = $pdo->prepare($sql);
@@ -84,8 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $reserved_user_id = $reserved_user['users_id'];
 
                 // Insert into 'lenen' table
-                $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available)
-                        VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available)";
+                $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available, image_path)
+                        VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available, :image_path)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':books_id', $books_id, PDO::PARAM_INT);
                 $stmt->bindParam(':users_id', $reserved_user_id, PDO::PARAM_INT);
@@ -95,7 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bindParam(':isbn', $isbn);
                 $stmt->bindParam(':language', $language);
                 $stmt->bindParam(':page_count', $page_count);
-                $stmt->bindParam(':copies_available', $copies_available, PDO::PARAM_INT); // Copies for the 'lenen' record
+                $stmt->bindParam(':copies_available', $copies_available, PDO::PARAM_INT);
+                $stmt->bindParam(':image_path', $image_path);
                 $stmt->execute();
 
                 // Step 4: Delete the reservation from the 'reserveren' table
@@ -112,10 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             }
 
-            // Step 5: If no one reserved the book, do nothing special and just update it in 'books'
-            // Already done above (no extra steps needed here for unreserved books)
 
-            // Redirect to the manager menu
             header("Location: ../index.php?page=manager_menu");
             exit;
         } else {

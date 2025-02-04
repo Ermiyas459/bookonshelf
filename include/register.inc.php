@@ -1,5 +1,4 @@
 
-<?php //include 'navbar.inc.php'; ?>
 
 
 <div class="register-page">
@@ -28,15 +27,37 @@
                 <label for="last_name">Achternaam*</label>
                 <input type="text" id="last_name" name="last_name" required>
             </div>
-
             <div class="form-group">
-                <label for="city">Woonplaats*</label>
-                <input type="text" id="city" name="city" required>
+                <label for="woonplaats">Woonplaats</label>
+                <div class="select-with-link">
+                    <select id="woonplaats" name="woonplaats" required>
+                        <option value="" <?php echo isset($_POST['woonplaats']) && $_POST['woonplaats'] == '' ? 'selected' : ''; ?>>Kies een Woonplaats</option>
+                        <?php
+                        include(__DIR__ . '/../../private/db_connect.php');
+
+                        try {
+                            $query = "SELECT * FROM `woonplaats`";
+                            $stmt = $pdo->query($query);
+
+                            while ($w = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                $selected = (isset($_POST['woonplaats']) && $_POST['woonplaats'] == $w['woonplaats_id']) ? 'selected' : '';
+                                echo '<option value="' . htmlspecialchars($w['woonplaats_id']) . '" ' . $selected . '>' . htmlspecialchars($w['woonplaats']) . '</option>';
+                            }
+                        } catch (PDOException $error) {
+                            echo '<option value="">Fout bij ophalen van woonplaatsen</option>';
+                        }
+                        ?>
+                    </select>
+<!--                    <a href="index.php?page=add-woonplaats" class="add-new-link">Nieuwe woonplaats toevoegen</a>-->
+                </div>
             </div>
+
+
             <div class="form-group">
                 <label for="street">Straat*</label>
                 <input type="text" id="street" name="street" required>
             </div>
+
             <div class="form-group">
                 <label for="house_number">Huisnummer*</label>
                 <input type="text" id="house_number" name="house_number" required>

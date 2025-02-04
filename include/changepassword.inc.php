@@ -11,9 +11,9 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="edit-page">
-    <main class="edit">
-        <h2>aanpassen</h2>
+<div class="add-page">
+    <main class="add">
+        <h2>Wachtwoord aanpassen</h2>
 
 
         <form method="POST" action="php/changepasswrd.php" enctype="multipart/form-data">
@@ -23,7 +23,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 <input type="text" id="password" name="password" value="" >
             </div>
             <div class="form-group">
-                <label for="confirm_password">confirm_password</label>
+                <label for="confirm_password">confirm password</label>
                 <input type="text" id="confirm_password" name="confirm_password" value=" " >
             </div>
             <?php
@@ -32,7 +32,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 unset($_SESSION['error']);
             }
             ?>
-            <button type="submit" class="toevegen-knop">aanpassen</button>
+            <button type="submit" class="aanpassen">Aanpassen</button>
         </form>
     </main>
 </div>

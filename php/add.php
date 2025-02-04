@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
 
-    // Validatie van de afbeelding
     if (!isset($_FILES['images_path']) || $_FILES['images_path']['error'] !== UPLOAD_ERR_OK) {
         $_SESSION['error'] = 'Het uploaden van een afbeelding is verplicht.';
         header('Location: ../index.php?page=add');

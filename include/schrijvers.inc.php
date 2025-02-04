@@ -17,12 +17,11 @@ try {
     <?php if (!empty($books)): ?>
         <table>
             <thead>
-            <button class="back" onclick="history.back(-1)">back</button>
          <tr>
-                <th>schrijver</th>
-                <th>aanpassen</th>
-                <th>verwijderen</th>
-                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-schrijvers'">toevoegen</button>
+                <th>Schrijver</th>
+                <th>Aanpassen</th>
+                <th>Verwijderen</th>
+                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-schrijvers'">Toevoegen</button>
                 </th>
 
 

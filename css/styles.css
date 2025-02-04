@@ -1096,6 +1096,44 @@ header {
     text-decoration: underline;
 }
 
+.register-page .form-group label[for="woonplaats"] {
+    color: #454444;
+}
+
+.register-page .form-group select#woonplaats {
+    width: 150%;
+    padding: 10px;
+    border: 1px solid #6c757d;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.register-page .form-group select#woonplaats:focus {
+    outline: none;
+    border-color: #0047ab;
+    box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.15);
+}
+
+.register-page .select-with-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*.register-page .select-with-link a.add-new-link {*/
+/*    font-size: 0.9rem;*/
+/*    color: #0047ab;*/
+/*    text-decoration: none;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.register-page .select-with-link a.add-new-link:hover {
+    text-decoration: underline;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     .add-page main {
@@ -1116,12 +1154,6 @@ header {
         font-size: 0.9rem;
     }
 }
-
-
-
-
-
-
 
 
 
@@ -1303,13 +1335,13 @@ h1 {
 
 
 
-/*.footer {*/
-/*    background-color: #f1f1f1;*/
-/*    padding: 20px 0;*/
-/*    width: 100%;*/
-/*    position: absolute;*/
-/*top: 3500px;*/
-/*}*/
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+    width: 100%;
+    position: absolute;
+top: 3500px;
+}
 .footer-container {
     display: flex;
     flex-direction: column;

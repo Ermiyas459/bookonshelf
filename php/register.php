@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $middle_name = $_POST['middle_name'];
     $last_name = $_POST['last_name'];
-    $city = $_POST['city'];
+    $woonplaats = $_POST['woonplaats'];
     $street = $_POST['street'];
     $house_number = $_POST['house_number'];
     $postal_code = $_POST['postal_code'];
@@ -21,6 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($password !== $confirm_password) {
         $_SESSION['error'] = "Wachtwoorden komen niet overeen!";
         header('Location: ../index.php?page=register');
+        exit();
+    }
+
+    if ($woonplaats === null) {
+        $_SESSION['error'] = "Selecteer een woonplaats.";
+        header("Location: register.php");
         exit();
     }
 
@@ -48,11 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        // Hash the password
+
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Validate the image (optional)
-        $image_path = NULL; // Default to NULL if no image is uploaded
+        $image_path = NULL;
 
         if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === UPLOAD_ERR_OK) {
             // Check file type and size
@@ -91,14 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Prepare SQL statement to insert new user
-        $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, date_of_birth, profile_pic, role) 
-                VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, :profile_pic, 'user')";
+        $sql = "INSERT INTO users_table (name, middle_name, last_name, woonplaats, street, house_number, postal_code, email, password, confirm_password, date_of_birth, profile_pic, role) 
+                VALUES (:name, :middle_name, :last_name, :woonplaats, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, :profile_pic, 'user')";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':middle_name', $middle_name);
         $stmt->bindParam(':last_name', $last_name);
-        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':woonplaats', $woonplaats);
         $stmt->bindParam(':street', $street);
         $stmt->bindParam(':house_number', $house_number);
         $stmt->bindParam(':postal_code', $postal_code);

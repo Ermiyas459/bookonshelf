@@ -1,5 +1,7 @@
 <?php
 include(__DIR__ . '/../../private/db_connect.php');
+//include 'include/navbar-manager.inc.php';
+
 
 try {
     // SQL-query om boeken en gerelateerde gegevens op te halen
@@ -18,6 +20,8 @@ try {
     echo "Fout bij ophalen van gegevens: " . $e->getMessage();
 }
 ?>
+<!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
+
 
 <main>
     <?php if (!empty($books)): ?>

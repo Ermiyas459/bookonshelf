@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $middle_name = $_POST['middle_name'];
     $last_name = $_POST['last_name'];
-    $city = $_POST['city'];
+    $woonplaats = $_POST['woonplaats'];
     $street = $_POST['street'];
     $house_number = $_POST['house_number'];
     $postal_code = $_POST['postal_code'];
@@ -52,14 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Prepare SQL statement to insert new user
-        $sql = "INSERT INTO users_table (name, middle_name, last_name, city, street, house_number, postal_code, email, password, confirm_password, date_of_birth, role) 
-                VALUES (:name, :middle_name, :last_name, :city, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, :role)";
+        $sql = "INSERT INTO users_table (name, middle_name, last_name, woonplaats, street, house_number, postal_code, email, password, confirm_password, date_of_birth, role) 
+                VALUES (:name, :middle_name, :last_name, :woonplaats, :street, :house_number, :postal_code, :email, :password, :confirm_password, :dob, :role)";
 
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':middle_name', $middle_name);
         $stmt->bindParam(':last_name', $last_name);
-        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':woonplaats', $woonplaats);
         $stmt->bindParam(':street', $street);
         $stmt->bindParam(':house_number', $house_number);
         $stmt->bindParam(':postal_code', $postal_code);

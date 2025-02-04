@@ -20,6 +20,7 @@ session_start();
     <title>BookOnShelf</title>
 <!--    <link rel="stylesheet" type="text/css" href="css/styles.css">-->
 <!--    <link rel="stylesheet" type="text/css" href="../css/styles.css">-->
+
 </head>
 <body class="home-page">
 

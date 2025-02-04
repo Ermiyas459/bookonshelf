@@ -17,12 +17,11 @@ try {
     <?php if (!empty($books)): ?>
         <table>
             <thead>
-            <button class="back" onclick="history.back(-1)">back</button>
             <tr>
-                <th>Taal</th>
-                <th>aanpassen</th>
-                <th>verwijderen</th>
-                <th>   <button class="toevoegen" onclick="window.location.href='index.php?page=add-genre'">toevoegen</button>
+                <th>Genre</th>
+                <th>Aanpassen</th>
+                <th>Verwijderen</th>
+                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-genre'">Toevoegen</button>
                 </th>
 
 
@@ -35,7 +34,7 @@ try {
                 <tr>
 
                     <td><?= htmlspecialchars($result['genre']); ?></td>
-                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=genre-aanpassen&genre_id=<?= $result['genre_id'] ?>'">aanpassen</button> </td>
+                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=genre-aanpassen&genre_id=<?= $result['genre_id'] ?>'">Aanpassen</button> </td>
 
                     <td>  <form method="post" action="php/genre.php" style="...">
                             <input type="hidden" name="genre_id" value="<?php echo $result['genre_id']; ?>">

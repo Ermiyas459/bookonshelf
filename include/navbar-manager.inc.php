@@ -35,7 +35,7 @@
 
     <div class="title">BookOnShelf</div>
     <div class="managers-buttons">
-        <button class="home" onclick="window.location.href='index.php?page=manager_menu'">boeken</button>
+        <button class="home" onclick="window.location.href='index.php?page=manager_menu'">Boeken</button>
 <!--        <div class="dropdown">-->
 <!--            <button class="dropbtn">Profiel</button>-->
 <!--            <div class="dropdown-content">-->
@@ -44,7 +44,7 @@
 <!--            </div>-->
 <!--        </div>-->
         <div class="dropdown">
-            <button class="dropbtn">toevoegen</button>
+            <button class="dropbtn">Toevoegen</button>
             <div class="dropdown-content">
                 <a href="index.php?page=add">Boeken</a>
                 <a href="index.php?page=add-users">Gebruikers</a>

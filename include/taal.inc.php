@@ -19,9 +19,9 @@ try {
             <thead>
             <tr>
                 <th>Taal</th>
-                <th>aanpassen</th>
-                <th>verwijderen</th>
-                <th>   <button class="toevoegen" onclick="window.location.href='index.php?page=add-taal'">toevoegen</button>
+                <th>Aanpassen</th>
+                <th>Verwijderen</th>
+                <th>   <button class="aanpassen" onclick="window.location.href='index.php?page=add-taal'">Toevoegen</button>
                 </th>
 
 
@@ -34,7 +34,7 @@ try {
                 <tr>
 
                     <td><?= htmlspecialchars($result['taal']); ?></td>
-                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=taal-edit&taal_id=<?= $result['taal_id'] ?>'">aanpassen</button> </td>
+                    <td><button class="aanpassen"  onclick="window.location.href='index.php?page=taal-edit&taal_id=<?= $result['taal_id'] ?>'">Aanpassen</button> </td>
 
                     <td>  <form method="post" action="php/taal.php" style="...">
                             <input type="hidden" name="taal_id" value="<?php echo $result['taal_id']; ?>">

@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $language = $_POST['language'];
     $page_count = $_POST['page_count'];
     $copies_available = $_POST['copies_available'];
+    $images_path=$_POST['images_path'];
 
     try {
 
@@ -37,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $reserved_user_id = $reservation['users_id'];
 
 
-            $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available)
-                    VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available)";
+            $sql = "INSERT INTO lenen (books_id, users_id, title, author, genre, isbn, language, page_count, copies_available, image_path)
+                    VALUES (:books_id, :users_id, :title, :author, :genre, :isbn, :language, :page_count, :copies_available, :image_path)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':books_id', $books_id, PDO::PARAM_INT);
             $stmt->bindParam(':users_id', $reserved_user_id, PDO::PARAM_INT);
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':language', $language);
             $stmt->bindParam(':page_count', $page_count, PDO::PARAM_INT);
             $stmt->bindParam(':copies_available', $copies_available, PDO::PARAM_INT);
+            $stmt->bindParam(':image_path', $image_path);
             $stmt->execute();
 
             $sql = 'DELETE FROM reserveren WHERE books_id = :books_id AND users_id = :users_id';

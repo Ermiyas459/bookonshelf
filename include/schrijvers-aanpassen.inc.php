@@ -11,8 +11,8 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="edit-page">
-    <main class="edit">
+<div class="add-page">
+    <main class="add">
         <h2>aanpassen</h2>
 
 

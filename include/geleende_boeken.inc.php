@@ -27,8 +27,6 @@
             <table>
                 <thead>
                 <tr>
-
-
                     <th> afbeelding</th>
                     <th> title</th>
                     <th>datum geleend</th>

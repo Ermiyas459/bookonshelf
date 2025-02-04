@@ -34,7 +34,7 @@ try {
             </div>
             <div class="profile-item">
                 <span class="label">Stad:</span>
-                <span class="value"><?= htmlspecialchars($result['city']); ?></span>
+                <span class="value"><?= htmlspecialchars($result['woonplaats']); ?></span>
             </div>
             <div class="profile-item">
                 <span class="label">Straat:</span>
