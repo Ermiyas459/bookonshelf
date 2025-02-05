@@ -83,26 +83,8 @@
             </div>
 
             <div class="form-group">
-                <label for="woonplaats">Role</label>
-                <div class="select-with-link">
-                    <select id="woonplaats" name="woonplaats" required>
-                        <option value="" <?php echo isset($_POST['role']) && $_POST['role'] == '' ? 'selected' : ''; ?>>kies een role</option>
-                <?php
-                include(__DIR__ . '/../../private/db_connect.php');
-                try {
-                    $query = "SELECT * FROM `role`";
-                    $stmt = $pdo->query($query);
-
-                    while ($t = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $selected = (isset($_POST['role']) && $_POST['role'] == $t['role_id']) ? 'selected' : '';
-                        echo '<option value="' . htmlspecialchars($t['role_id']) . '" ' . $selected . '>' . htmlspecialchars($t["role" ]) . '</option>';
-                    }
-                } catch (PDOException $error) {
-                    echo '<option value="">Fout bij ophalen van auteurs</option>';
-                }
-                ?>
-                    </select>
-                </div>
+                <label for="email">Role:</label>
+                <input type="text" id="email" name="email" required>
             </div>
 
 

@@ -14,17 +14,14 @@ try {
         throw new Exception("Book not found.");
     }
 
-    // Fetch authors
     $authorsQuery = "SELECT * FROM schrijvers";
     $authorsStmt = $pdo->query($authorsQuery);
     $authors = $authorsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Fetch genres
     $genresQuery = "SELECT * FROM genre";
     $genresStmt = $pdo->query($genresQuery);
     $genres = $genresStmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Fetch languages
     $languagesQuery = "SELECT * FROM taal";
     $languagesStmt = $pdo->query($languagesQuery);
     $languages = $languagesStmt->fetchAll(PDO::FETCH_ASSOC);

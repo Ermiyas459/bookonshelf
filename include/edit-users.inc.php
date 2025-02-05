@@ -7,7 +7,13 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':users_id', $users_id);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$result) {
+    throw new Exception("Book not found.");
+}
 
+$woonplaatsQuery = "SELECT * FROM woonplaats";
+$woonplaatsStmt = $pdo->query($woonplaatsQuery);
+$woonplaats = $woonplaatsStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="add-page">
@@ -32,27 +38,19 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
 
+            <!-- Author -->
             <div class="form-group">
-                <label for="woonplaats">Woonplaats</label>
+                <label for="author">Auteur</label>
                 <div class="select-with-link">
-                    <select id="woonplaats" name="woonplaats" required>
-                        <option value="" <?php echo isset($_POST['woonplaats']) && $_POST['woonplaats'] == '' ? 'selected' : ''; ?>>Kies een Woonplaats</option>
-                        <?php
-                        include(__DIR__ . '/../../private/db_connect.php');
-
-                        try {
-                            $query = "SELECT * FROM `woonplaats`";
-                            $stmt = $pdo->query($query);
-
-                            while ($w = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                $selected = (isset($_POST['woonplaats']) && $_POST['woonplaats'] == $w['woonplaats_id']) ? 'selected' : '';
-                                echo '<option value="' . htmlspecialchars($w['woonplaats_id']) . '" ' . $selected . '>' . htmlspecialchars($w['woonplaats']) . '</option>';
-                            }
-                        } catch (PDOException $error) {
-                            echo '<option value="">Fout bij ophalen van woonplaatsen</option>';
-                        }
-                        ?>
+                    <select id="author" name="author" required>
+                        <?php foreach ($woonplaats as $woonplaats): ?>
+                            <option value="<?php echo htmlspecialchars($woonplaats['woonplaats_id']); ?>"
+                                <?php echo ($woonplaats['woonplaats_id'] == $result['woonplaats']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($woonplaats['woonplaats']); ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
+                    <!--                    <a href="index.php?page=schrijvers" class="add-new-link">Nieuwe auteur toevoegen</a>-->
                 </div>
             </div>
 
@@ -74,8 +72,8 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <div class="form-group">
-                <label for="role">role</label>
-                <input type="role" id="role" name="role"value="<?php echo $result['role'] ?>" required>
+                <label for="email">role</label>
+                <input type="text" id="email" name="email"value="<?php echo $result['role'] ?>" required>
             </div>
 
             <div class="form-group">

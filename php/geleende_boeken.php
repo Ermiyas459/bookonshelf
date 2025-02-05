@@ -19,10 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $copies_available = $_POST['copies_available'];
     $image_path = $_POST['image_path'];
 
-    if (!$books_id || !$title || !$author || !$genre || !$isbn || !$language || !$page_count || $copies_available === null) {
-        echo 'Error: Missing required book information.';
-        exit();
-    }
 
     if ($copies_available == 0) {
         header( 'location: ../index.php?page=usersmenu');
